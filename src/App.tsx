@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="d-flex flex-column justify-content-center align-items-center min-vh-100 bg-[#F5F7FA]">
       {/* <Home /> */}
-      <div className="flex flex-col absolute right-0 w-[calc(100%-250px)] bg-white">
+      <div className="flex flex-col absolute right-0 w-[calc(100%-250px)]">
         <Header pathname={pathname} navItems={navItems} />
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />

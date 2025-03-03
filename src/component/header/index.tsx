@@ -9,7 +9,7 @@ interface headerProps {
 }
 const Header = ({ pathname, navItems }: headerProps) => {
   return (
-    <header className="flex h-[100px] items-center justify-between border-b border-gray-200 pr-[40px]">
+    <header className="flex h-[100px] items-center justify-between border-b border-gray-200 pr-[40px] bg-white">
       <div className="flex w-full items-center justify-between pl-[40px]">
         <h1 className="text-2xl font-semibold text-gray-800">
           {navItems.find((item) => item.path === pathname)?.label}

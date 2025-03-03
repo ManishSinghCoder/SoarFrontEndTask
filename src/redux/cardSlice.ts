@@ -4,9 +4,10 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 interface Card {
   id: number
   name: string
-  balance: number
+  balance: string
   cardNumber: string // Full number, will mask it in UI
   validThrough: string // Expiry date MM/YY
+  variant: string
 }
 
 // Define initial state
@@ -31,16 +32,19 @@ const mockFetchCards = (): Promise<Card[]> => {
         {
           id: 1,
           name: 'John Doe',
-          balance: 5000,
+          balance: "$5,000",
           cardNumber: '1234 5678 9012 3456',
-          validThrough: '2027-12-31T23:59:59Z',
+          validThrough: '12/22',
+          variant: "dark",
         },
         {
           id: 2,
           name: 'Jane Smith',
-          balance: 3200,
+          balance: "$3,200",
           cardNumber: '9876 5432 1098 7654',
-          validThrough: '2026-08-31T23:59:59Z',
+          validThrough: '12/22',
+          variant: "light",
+
         },
       ])
     }, 1500) // Simulating delay
