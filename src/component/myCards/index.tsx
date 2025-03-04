@@ -47,7 +47,7 @@ const MyCards: React.FC<CardProps> = ({ cards }) => {
               />
             </div>
 
-            <div className="w-[80%] flex justify-between items-start  ">
+            <div className=" w-[90%] md:w-[80%] flex justify-between items-start  ">
               <div>
                 <p className="text-md opacity-70  font-lato font-[400]">CARD HOLDER</p>
                 <p className="text-md  font-lato font-[600]">{card.name}</p>

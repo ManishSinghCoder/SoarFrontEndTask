@@ -32,7 +32,7 @@ function App() {
   const { pathname } = location
   return (
     <div className="flex flex-column justify-content-center align-items-center">
-      <div className="flex flex-col absolute right-0 w-[calc(100%-250px)] bg-[#F5F7FA]">
+      <div className="flex flex-col absolute right-0 w-full xl:w-[calc(100%-250px)] bg-[#F5F7FA]">
         <Header pathname={pathname} navItems={navItems} />
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -40,7 +40,7 @@ function App() {
           <Route path="/setting" element={<Setting />} />
         </Routes>
       </div>
-      <SideBar pathname={pathname} navItems={navItems} />
+      {/* <SideBar pathname={pathname} navItems={navItems} /> */}
     </div>
   )
 }
