@@ -1,7 +1,8 @@
 import settingIcon from '../../assets/icons/settingsIcon.svg'
 import notificationIcon from '../../assets/icons/notificationIcon.svg'
 import searchIcon from '../../assets/icons/searchIcon.svg'
-import profilePicture from '../../assets/images/profilePicture.svg'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 
 interface navItems {
   icon: string
@@ -13,6 +14,9 @@ interface headerProps {
   navItems: navItems[]
 }
 const Header = ({ pathname, navItems }: headerProps) => {
+  const profileImage = useSelector(
+    (state: RootState) => state.profile.profileImage
+  )
   return (
     <header className="flex h-[100px] items-center justify-between border-b border-gray-200 pr-[40px] bg-white">
       <div className="flex w-full items-center justify-between pl-[40px]">
@@ -38,15 +42,13 @@ const Header = ({ pathname, navItems }: headerProps) => {
           </div>
           <div className="relative cursor-pointer flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
             <img src={notificationIcon} alt="notification icon" />
-            <span
-              className="absolute font-inter right-[5px] top-[2px] flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-xs text-white"
-            >
+            <span className="absolute font-inter right-[5px] top-[2px] flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-xs text-white">
               0
             </span>
           </div>
           <div className="h-10 w-10 overflow-hidden rounded-full">
             <img
-              src={profilePicture}
+              src={profileImage}
               alt="Profile"
               width={40}
               height={40}
