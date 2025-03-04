@@ -1,3 +1,8 @@
+import settingIcon from '../../assets/icons/settingsIcon.svg'
+import notificationIcon from '../../assets/icons/notificationIcon.svg'
+import searchIcon from '../../assets/icons/searchIcon.svg'
+import profilePicture from '../../assets/images/profilePicture.svg'
+
 interface navItems {
   icon: string
   label: string
@@ -11,31 +16,37 @@ const Header = ({ pathname, navItems }: headerProps) => {
   return (
     <header className="flex h-[100px] items-center justify-between border-b border-gray-200 pr-[40px] bg-white">
       <div className="flex w-full items-center justify-between pl-[40px]">
-        <h1 className="text-2xl font-semibold text-gray-800">
+        <h1 className="heading-text">
           {navItems.find((item) => item.path === pathname)?.label}
         </h1>
         <div className="flex items-center gap-4">
           <div className="relative">
-            {/* <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" /> */}
+            <img
+              className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
+              src={searchIcon}
+              alt="search icon"
+            />
             <input
               type="text"
               placeholder="Search for something"
-              className="h-10 w-64 rounded-full bg-gray-100 pl-10 pr-4 text-sm focus:outline-none"
+              className="h-10 w-64 rounded-full bg-gray-100 pl-10 pr-4 text-sm font-inter focus:outline-none"
               //   onChange={handleChange}
             />
           </div>
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
-            {/* <Settings className="h-5 w-5" /> */}
+          <div className="flex cursor-pointer h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
+            <img src={settingIcon} alt="setting icon" />
           </div>
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
-            {/* <Bell className="h-5 w-5" /> */}
-            <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-xs text-white">
-              1
+          <div className="relative cursor-pointer flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
+            <img src={notificationIcon} alt="notification icon" />
+            <span
+              className="absolute font-inter right-[5px] top-[2px] flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-xs text-white"
+            >
+              0
             </span>
           </div>
           <div className="h-10 w-10 overflow-hidden rounded-full">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/img-2s7AH3CzGGPEwCw66GpaPtlffjcTA4.png"
+              src={profilePicture}
               alt="Profile"
               width={40}
               height={40}
