@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import soarIcon from '../../asset/icons/mingcute_task-fill.svg'
+import soarIcon from '../../assets/icons/mingcute_task-fill.svg'
 
 interface navItems {
   icon: string
@@ -14,11 +14,11 @@ interface sidebarProps {
 
 const SideBar = ({ pathname, navItems }: sidebarProps) => {
   return (
-    <div className="w-[250px] bg-white h-screen relative left-0">
-      <div className="flex items-center w-[250px] text-gray-400 h-[100px] border-r border-[#E6EFF5] pl-[40px]">
+    <div className="w-[250px] bg-white h-screen border-r border-[#E6EFF5] relative left-0">
+      <div className="flex items-center w-[250px] text-gray-400 h-[100px]  pl-[40px]">
         <Link to="/" className="flex items-center gap-[10px]">
           <img src={soarIcon} className="w-[35px] h-[35px]" alt="soar icon" />
-          <div className="text-[25px] text-[#343c6a] font-extrabold">
+          <div className="font-inter text-[25px] text-[#343c6a] font-extrabold">
             Soar Task
           </div>
         </Link>
@@ -38,7 +38,7 @@ const SideBar = ({ pathname, navItems }: sidebarProps) => {
                 className={`w-[25px] h-[25px] ml-[35px]`}
                 alt={item.label}
               />
-              <div className={`ml-3 text-[#232323] `}>
+              <div className={`ml-3 text-[#232323] font-inter`}>
                 {item.label === 'Overview' ? 'Dashboard' : item.label}
               </div>
             </div>
