@@ -1,23 +1,20 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import paypalIcon from '../assets/icons/payPalIcon.svg'
+import currencyIcon from '../assets/icons/currencyIcon.svg'
+import masterCardIcon from '../assets/icons/creaditIcon.svg'
+import { Transaction } from '../constent/type'
 
-interface Transaction {
-  id: number
-  description: string
-  type: 'card' | 'paypal' | 'user'
-  amount: number
-  date: string
-}
 
 interface TransactionState {
   transactions: Transaction[]
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'
-  error: string | null
+  transectionStatus: 'idle' | 'loading' | 'succeeded' | 'failed'
+  transectionsError: string | null
 }
 
 const initialState: TransactionState = {
   transactions: [],
-  status: 'idle',
-  error: null,
+  transectionStatus: 'idle',
+  transectionsError: null,
 }
 
 const mockFetchTransactions = (): Promise<Transaction[]> => {
@@ -26,25 +23,31 @@ const mockFetchTransactions = (): Promise<Transaction[]> => {
       resolve([
         {
           id: 1,
-          description: 'Deposit from my Card',
-          type: 'card',
-          amount: -850,
+          title: 'Deposit from my Card',
           date: '28 January 2021',
-        },
-        {
+          amount: '-$850',
+          icon: masterCardIcon,
+          iconBg: 'bg-yellow-100',
+          amountColor: 'text-red-500',
+      },
+      {
           id: 2,
-          description: 'Deposit Paypal',
-          type: 'paypal',
-          amount: 2500,
+          title: 'Deposit Paypal',
           date: '25 January 2021',
-        },
-        {
+          amount: '+$2,500',
+          icon: paypalIcon,
+          iconBg: 'bg-blue-100',
+          amountColor: 'text-green-500',
+      },
+      {
           id: 3,
-          description: 'Jemi Wilson',
-          type: 'user',
-          amount: 5400,
+          title: 'Jemi Wilson',
           date: '21 January 2021',
-        },
+          amount: '+$5,400',
+          icon: currencyIcon,
+          iconBg: 'bg-cyan-100',
+          amountColor: 'text-green-500',
+      },
       ])
     }, 1500)
   })
@@ -64,18 +67,18 @@ const transactionSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTransactions.pending, (state) => {
-        state.status = 'loading'
+        state.transectionStatus = 'loading'
       })
       .addCase(
         fetchTransactions.fulfilled,
         (state, action: PayloadAction<Transaction[]>) => {
-          state.status = 'succeeded'
+          state.transectionStatus = 'succeeded'
           state.transactions = action.payload
         }
       )
       .addCase(fetchTransactions.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message ?? 'Failed to fetch transactions'
+        state.transectionStatus = 'failed'
+        state.transectionsError = action.error.message ?? 'Failed to fetch transactions'
       })
   },
 })

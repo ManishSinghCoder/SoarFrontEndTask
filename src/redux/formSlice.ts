@@ -1,25 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import profileImageIcon from '../assets/images/profilePicture.svg'
-
-interface ProfileState {
-  formData: {
-    name: string
-    username: string
-    email: string
-    password: string
-    dob: string 
-    presentAddress: string
-    permanentAddress: string
-    city: string
-    postalCode: string
-    country: string
-  }
-  errors: Record<string, string>
-  showDatePicker: boolean
-  selectedDate: Date | null
-  profileImage: string
-}
+import { ProfileState } from '../constent/type';
 
 const initialState: ProfileState = {
   formData: {

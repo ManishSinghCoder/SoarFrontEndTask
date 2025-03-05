@@ -1,14 +1,7 @@
 import darkchip from '../../assets/icons/Chip_Card_dark.svg'
 import lightchip from '../../assets/icons/Chip_Card.svg'
+import { Card } from '../../constent/type'
 
-interface Card {
-  id: number
-  name: string
-  balance: string
-  cardNumber: string
-  validThrough: string
-  variant: string
-}
 
 interface ICardProps {
   cards: Card[]

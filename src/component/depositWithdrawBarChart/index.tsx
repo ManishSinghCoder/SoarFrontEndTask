@@ -10,8 +10,17 @@ import {
   Legend,
   ChartConfiguration,
 } from 'chart.js'
+import { Dataset } from '../../constent/type'
 
-const DepositWithdrawChart: React.FC = () => {
+
+interface IDepossitWithdrawChart {
+  dipositeWithdrawLabels: string[]
+  dipositWithdrawDatasets: Dataset[]
+}
+const DepositWithdrawChart: React.FC<IDepossitWithdrawChart> = ({
+  dipositeWithdrawLabels,
+  dipositWithdrawDatasets,
+}) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const chartInstanceRef = useRef<Chart | null>(null)
 
@@ -36,29 +45,8 @@ const DepositWithdrawChart: React.FC = () => {
     )
 
     const data = {
-      labels: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-      datasets: [
-        {
-          label: 'Withdraw',
-          data: [450, 340, 310, 450, 140, 380, 390, 290],
-          backgroundColor: '#232323',
-          borderRadius: 30,
-          borderSkipped: false as const,
-          barPercentage: 0.3,
-          categoryPercentage: 0.6,
-          order: 1,
-        },
-        {
-          label: 'Deposit',
-          data: [230, 120, 250, 370, 230, 220, 330, 230],
-          backgroundColor: '#396AFF',
-          borderRadius: 30,
-          borderSkipped: false as const,
-          barPercentage: 0.3,
-          categoryPercentage: 0.6,
-          order: 2,
-        },
-      ],
+      labels: dipositeWithdrawLabels,
+      datasets: dipositWithdrawDatasets,
     }
 
     const config: ChartConfiguration<'bar'> = {
@@ -132,4 +120,4 @@ const DepositWithdrawChart: React.FC = () => {
   )
 }
 
-export default DepositWithdrawChart
+export default React.memo(DepositWithdrawChart)

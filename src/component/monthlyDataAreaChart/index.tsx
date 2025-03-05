@@ -1,7 +1,15 @@
 import React, { useEffect, useRef } from 'react'
 import Chart, { ChartConfiguration } from 'chart.js/auto'
 
-const MonthlyDataChart = () => {
+interface IMonthlyDataChart {
+  monthlyDateLabels: string[]
+  monthlyDatasets: number[]
+}
+
+const MonthlyDataChart: React.FC<IMonthlyDataChart> = ({
+  monthlyDateLabels,
+  monthlyDatasets,
+}) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null)
   const areaChartInstance = useRef<Chart | null>(null)
 
@@ -18,12 +26,12 @@ const MonthlyDataChart = () => {
     const config: ChartConfiguration<'line'> = {
       type: 'line',
       data: {
-        labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
+        labels: monthlyDateLabels,
         datasets: [
           {
             fill: true,
             label: '',
-            data: [320, 240, 480, 780, 220, 580, 640],
+            data: monthlyDatasets,
             borderColor: 'rgb(33, 66, 252)',
             backgroundColor: 'rgba(33, 66, 252, 0.2)',
             tension: 0.4,
@@ -89,4 +97,4 @@ const MonthlyDataChart = () => {
   )
 }
 
-export default MonthlyDataChart
+export default React.memo(MonthlyDataChart)

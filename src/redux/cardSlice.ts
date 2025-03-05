@@ -1,13 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { Card } from '../constent/type'
 
-interface Card {
-  id: number
-  name: string
-  balance: string
-  cardNumber: string
-  validThrough: string
-  variant: string
-}
 
 interface CardState {
   cards: Card[]

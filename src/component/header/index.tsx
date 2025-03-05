@@ -5,6 +5,7 @@ import settingIcon from '../../assets/icons/settingsIcon.svg'
 import notificationIcon from '../../assets/icons/notificationIcon.svg'
 import hamburgerIcon from '../../assets/icons/hamburger.svg'
 import searchIcon from '../../assets/icons/searchIcon.svg'
+import React from 'react'
 
 interface navItems {
   icon: string
@@ -85,4 +86,4 @@ const Header = ({ pathname, navItems, toggleSidebar }: IHeaderProps) => {
   )
 }
 
-export default Header
+export default React.memo(Header)

@@ -4,6 +4,14 @@ import Chart, {
   ChartData,
   ChartOptions,
 } from 'chart.js/auto'
+import { PieDataset } from '../../constent/type'
+
+
+
+interface IExpensePieChart {
+  pieChartLabels: string[]
+  pieChartDatasets: PieDataset[]
+}
 
 Chart.register({
   id: 'customLabels',
@@ -39,7 +47,10 @@ Chart.register({
   },
 })
 
-const ExpensePieChart: React.FC = () => {
+const ExpensePieChart: React.FC<IExpensePieChart> = ({
+  pieChartLabels,
+  pieChartDatasets,
+}) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null)
   const chartInstanceRef = useRef<Chart | null>(null)
 
@@ -50,17 +61,8 @@ const ExpensePieChart: React.FC = () => {
     if (!ctx) return
 
     const data: ChartData<'pie'> = {
-      labels: ['Entertainment', 'Bill Expense', 'Others', 'Investment'],
-      datasets: [
-        {
-          data: [30, 15, 20, 35],
-          backgroundColor: ['#39447a', '#ff8c21', '#222222', '#4169e1'],
-          borderWidth: 0,
-          borderColor: '#ffffff',
-          offset: [50, 80, 15, 10],
-          hoverOffset: [70, 100, 35, 30],
-        },
-      ],
+      labels: pieChartLabels,
+      datasets: pieChartDatasets,
     }
     const options: ChartOptions<'pie'> = {
       responsive: true,
@@ -100,4 +102,4 @@ const ExpensePieChart: React.FC = () => {
   )
 }
 
-export default ExpensePieChart
+export default React.memo(ExpensePieChart)
