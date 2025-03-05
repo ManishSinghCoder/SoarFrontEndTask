@@ -10,26 +10,27 @@ import MonthlyDataChart from '../monthlyDataAreaChart'
 import DepositWithdrawChart from '../depositWithdrawBarChart'
 import ExpensePieChart from '../expensePieChart'
 import LoadingScreen from '../loadingScreen'
-
-const Dashboard: React.FC = () => {
+interface Idashboard {
+  isSidebarOpen: boolean
+}
+const Dashboard: React.FC<Idashboard> = ({ isSidebarOpen }) => {
   const dispatch = useDispatch<ThunkDispatch<RootState, unknown, any>>()
   const { cards, status, error } = useSelector(
     (state: RootState) => state.cards
   )
-  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null)
 
-  const [atEnd, setAtEnd] = useState(false);
+  const [atEnd, setAtEnd] = useState(false)
 
   const handleToggleScroll = () => {
     if (cardsContainerRef.current) {
       cardsContainerRef.current.scrollTo({
-        left: atEnd ? 0 : cardsContainerRef.current.scrollWidth, 
-        behavior: "smooth", 
-      });
-      setAtEnd(!atEnd); 
+        left: atEnd ? 0 : cardsContainerRef.current.scrollWidth,
+        behavior: 'smooth',
+      })
+      setAtEnd(!atEnd)
     }
-  };
-
+  }
 
   useEffect(() => {
     dispatch(fetchCards())
@@ -39,16 +40,24 @@ const Dashboard: React.FC = () => {
   if (status === 'failed') return <p>Error: {error}</p>
 
   return (
-    <div className="w-full flex flex-col gap-[18px] md:p-[30px] pl-6 py-6">
+    <div
+      className={`w-full flex flex-col gap-[18px] md:p-[30px] pl-6 py-6 ${isSidebarOpen && 'h-[82vh]'}`}
+    >
       <div className="w-full flex flex-col md:flex-row justify-center gap-[18px] items-stretch">
         <div className="w-[100%] md:w-[calc(100%-355px)] flex flex-col gap-[18px] ">
           <div className="flex justify-between items-center">
             <h2 className="heading-text">My Cards</h2>
-            <button className="hover:text-indigo-600 font-medium text-primary-text-color pr-6 md:pr-0" onClick={handleToggleScroll}>
+            <button
+              className="hover:text-indigo-600 font-medium text-primary-text-color pr-6 md:pr-0"
+              onClick={handleToggleScroll}
+            >
               See All
             </button>
           </div>
-          <div ref={cardsContainerRef} className="flex-1 max-h-[260px] w-full overflow-x-auto whitespace-nowrap  ">
+          <div
+            ref={cardsContainerRef}
+            className="flex-1 max-h-[260px] w-full overflow-x-auto whitespace-nowrap  "
+          >
             <MyCards cards={cards} />
           </div>
         </div>
@@ -75,13 +84,13 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
       <div className="w-full flex  flex-col md:flex-row justify-center gap-[18px]">
-        <div className="w-[100%] md:w-[360px] flex flex-col gap-[18px]">
+        <div className="w-[100%] md:w-[420px] flex flex-col gap-[18px]">
           <div className="flex justify-between items-center">
             <h2 className="heading-text">Quick Transfer</h2>
           </div>
           <QuickTransfer />
         </div>
-        <div className=" w-[100%] md:w-[calc(100%-378px)] flex flex-col gap-[18px]">
+        <div className=" w-[100%] md:w-[calc(100%-438px)] flex flex-col gap-[18px]">
           <h2 className="heading-text">Balance History</h2>
           <MonthlyDataChart />
         </div>

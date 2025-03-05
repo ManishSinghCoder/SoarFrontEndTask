@@ -65,7 +65,7 @@ function Setting() {
         className={`md:pb-0 p-10 bg-white rounded-3xl ${showDatePicker ? 'backdrop-blur-md pointer-events-none' : 'md:h-[calc(100vh-140px)]'}`}
       >
         {showDatePicker && (
-          <div className="absolute md:h-[calc(100vh-140px)] rounded-2xl inset-0 bg-black/10 backdrop-blur-sm pointer-events-auto z-10" />
+          <div className="absolute md:h-[calc(100vh-140px)] rounded-2xl inset-0 bg-white/10 backdrop-blur-sm pointer-events-auto z-10" />
         )}
         <ProfileIconUpdate setActiveTab={setActiveTab} activeTab={activeTab} />
         {activeTab === TABS.EDIT && (
@@ -126,7 +126,7 @@ function Setting() {
               <div className="mt-10 flex justify-center md:justify-end">
                 <button
                   type="submit"
-                  className="px-8 py-3 w-full md:w-[30%] bg-default-text-color text-white font-medium rounded-[15px] hover:bg-gray-800 focus:ring-2 focus:ring-gray-500 hover:bg-gray-200"
+                  className="px-8 py-3 w-full md:w-[30%] bg-default-text-color text-white font-medium rounded-[15px]  focus:ring-2 focus:ring-gray-500 hover:bg-gray-200"
                 >
                   Save
                 </button>

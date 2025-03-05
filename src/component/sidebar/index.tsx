@@ -22,7 +22,7 @@ const SideBar = ({
 }: sidebarProps) => {
   
   return (
-    <div className=" w-full z-10 md:w-[300px] lg:w-[250px] bg-white h-screen border-r border-[#E6EFF5] relative left-0">
+    <div className=" w-[300px] z-10 md:w-[300px] lg:w-[250px] bg-white h-[100vh] border-r border-[#E6EFF5] relative left-0">
       <div className="flex items-center w-[250px] text-gray-400 h-[100px]  pl-[40px]">
         <Link to="/" className="flex items-center gap-[10px]">
           <img src={soarIcon} className="w-[35px] h-[35px]" alt="soar icon" />

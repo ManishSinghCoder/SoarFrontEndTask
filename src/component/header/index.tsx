@@ -70,7 +70,7 @@ const Header = ({ pathname, navItems, toggleSidebar }: headerProps) => {
       </header>
       <div className="md:hidden w-full flex items-center justify-center px-[20px] pb-[20px] bg-white  relative">
         <img
-          className=" absolute left-[9%]  h-4 w-4  text-gray-400"
+          className=" absolute left-[30px]  h-4 w-4  text-gray-400"
           src={searchIcon}
           alt="search icon"
         />

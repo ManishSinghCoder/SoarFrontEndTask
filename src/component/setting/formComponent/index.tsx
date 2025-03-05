@@ -31,8 +31,8 @@ function FormField({
         name={id}
         placeholder={placeHolder}
         onChange={onChange}
-        className={`w-full h-[50px] px-4 py-2 shadow-custom-card border border-primary-border-color ${value.length > 0 ? 'text-primary-text-color' : 'placeholder-secondary-text-color'} rounded-[15px] ${
-          error ? 'border-red-500' : 'border-primary-border-color'
+        className={`w-full h-[50px] px-4 py-2 shadow-custom-card border border-primary-border-color focus:border-[1px] ${value.length > 0 ? 'text-primary-text-color' : 'placeholder-secondary-text-color'} rounded-[15px] ${
+          error ? 'border-red-500' : 'border-primary-border-color '
         }`}
       />
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
