@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCards } from '../../redux/cardSlice'
-import { RootState } from '../../redux/store'
-import { ThunkDispatch } from '@reduxjs/toolkit'
+import { AppDispatch, RootState } from '../../redux/store'
+
 import MyCards from '../myCards'
 import RecentTransactions from '../recentTransection'
 import QuickTransfer from '../quickTransfer'
@@ -12,7 +12,7 @@ import ExpensePieChart from '../expensePieChart'
 import LoadingScreen from '../loadingScreen'
 
 const Dashboard: React.FC = () => {
-  const dispatch = useDispatch<ThunkDispatch<RootState, unknown, any>>()
+  const dispatch = useDispatch<AppDispatch>()
   const { cards, status, error } = useSelector(
     (state: RootState) => state.cards
   )

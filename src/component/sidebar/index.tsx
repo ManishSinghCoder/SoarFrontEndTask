@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+
 import soarIcon from '../../assets/icons/mingcute_task-fill.svg'
 
 interface navItems {
@@ -7,7 +8,7 @@ interface navItems {
   path: string
 }
 
-interface sidebarProps {
+interface ISidebarProps {
   pathname: string
   navItems: navItems[]
   toggleSidebar?: () => void
@@ -19,8 +20,7 @@ const SideBar = ({
   navItems,
   toggleSidebar,
   isSidebarOpen,
-}: sidebarProps) => {
-  
+}: ISidebarProps) => {
   return (
     <div className=" w-[300px] z-10 md:w-[300px] lg:w-[250px] bg-white h-screen border-r border-[#E6EFF5] relative left-0">
       <div className="flex items-center w-[250px] text-gray-400 h-[100px]  pl-[40px]">

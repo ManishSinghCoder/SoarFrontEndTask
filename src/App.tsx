@@ -1,7 +1,12 @@
+import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+
 import Dashboard from './component/dashboard'
 import Setting from './component/setting'
-// import PageNotFound from './component/pageNotFound'
+import SideBar from './component/sidebar'
+import Header from './component/header'
+import NotFound from './component/pageNotFound'
+
 import home from './assets/icons/home.svg'
 import transaction from './assets/icons/transfer.svg'
 import account from './assets/icons/user.svg'
@@ -11,10 +16,6 @@ import loan from './assets/icons/loan.svg'
 import service from './assets/icons/service.svg'
 import privilege from './assets/icons/econometrics.svg'
 import setting from './assets/icons/settings.svg'
-import SideBar from './component/sidebar'
-import Header from './component/header'
-import NotFound from './component/pageNotFound'
-import { useEffect, useState } from 'react'
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)

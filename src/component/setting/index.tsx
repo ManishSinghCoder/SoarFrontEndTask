@@ -1,18 +1,20 @@
 import type React from 'react'
 import { useEffect, useCallback, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { AppDispatch, RootState } from '../../redux/store'
+
 import FormField from './formComponent'
 import ProfileIconUpdate from './settingTabs'
 import ProfilePictureUpdate from './profileIconUpdate'
 import { fields, formatDate, TABS } from './constants'
 import DatePicker from '../datePicker'
-import { AppDispatch, RootState } from '../../redux/store'
 import {
   closeDatePicker,
   toggleDatePicker,
   updateField,
   validateForm,
 } from '../../redux/formSlice'
+
 import arrowDownIcon from '../../assets/icons/rightArrow.svg'
 
 function Setting() {
@@ -20,7 +22,7 @@ function Setting() {
   const { formData, errors, showDatePicker, selectedDate } = useSelector(
     (state: RootState) => (state as any).profile
   )
-  const [activeTab, setActiveTab] = useState<(typeof TABS)[keyof typeof TABS]>(
+  const [activeTab, setActiveTab] = useState<string>(
     TABS.EDIT
   )
 

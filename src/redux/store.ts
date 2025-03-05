@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+
 import cardReducer from './cardSlice'
 import transactionSlice from './transactionSlice'
 import formReducer from './formSlice'
@@ -12,8 +13,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredPaths: ['profile.selectedDate'], // Ignore specific paths
-        ignoredActions: ['profile/selectDateFromPicker'], // Ignore actions that store non-serializable values
+        ignoredPaths: ['profile.selectedDate'],
+        ignoredActions: ['profile/selectDateFromPicker'],
       },
     }),
 })

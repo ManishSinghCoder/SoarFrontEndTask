@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { selectDateFromPicker } from '../../redux/formSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import { selectDateFromPicker } from '../../redux/formSlice'
+
 import {
   days,
   formatDay,
@@ -11,7 +12,11 @@ import {
   months,
 } from './constants'
 
-export default function DatePicker({ setShowDatePicker }: any) {
+interface IDatePicker {
+  setShowDatePicker: (show: boolean) => void
+}
+
+export default function DatePicker({ setShowDatePicker }: IDatePicker) {
   const currentDate = new Date()
   const [month, setMonth] = useState(currentDate.getMonth())
   const [year, setYear] = useState(currentDate.getFullYear())

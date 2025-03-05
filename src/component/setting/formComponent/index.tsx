@@ -1,4 +1,4 @@
-interface formFieldProps {
+interface IFormFieldProps {
   id: string
   label: string
   type?: string
@@ -16,7 +16,7 @@ function FormField({
   onChange,
   error,
   placeHolder,
-}: formFieldProps) {
+}: IFormFieldProps) {
   return (
     <div>
       <label

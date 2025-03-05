@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 import profileImageIcon from '../assets/images/profilePicture.svg'
 
 interface ProfileState {
