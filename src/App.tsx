@@ -14,8 +14,11 @@ import setting from './assets/icons/settings.svg'
 import SideBar from './component/sidebar'
 import Header from './component/header'
 import NotFound from './component/pageNotFound'
+import { useEffect, useState } from 'react'
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
   const navItems = [
     { icon: home, label: 'Overview', path: '/dashboard' },
     { icon: transaction, label: 'Transactions', path: '/transactions' },
@@ -30,17 +33,52 @@ function App() {
 
   const location = useLocation()
   const { pathname } = location
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev)
+  }
+  useEffect(() => {
+    const handleResize = () => {
+      if (isSidebarOpen && window.innerWidth > 600) {
+        setIsSidebarOpen(false); 
+      }
+    };
+  
+    window.addEventListener("resize", handleResize);
+  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isSidebarOpen]);
+  
+
   return (
-    <div className="flex flex-column justify-content-center align-items-center">
-      <div className="flex flex-col absolute right-0 w-full xl:w-[calc(100%-250px)] bg-[#F5F7FA]">
-        <Header pathname={pathname} navItems={navItems} />
+    <div className="flex flex-column justify-content-center align-items-center ">
+      <div
+        className={`flex flex-col absolute right-0 w-full lg:w-[calc(100%-250px)] bg-[#F5F7FA] ${isSidebarOpen ? 'hidden' : ''}`}
+      >
+        <Header
+          pathname={pathname}
+          navItems={navItems}
+          toggleSidebar={toggleSidebar}
+        />
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/setting" element={<Setting />} />
         </Routes>
       </div>
-      {/* <SideBar pathname={pathname} navItems={navItems} /> */}
+      {isSidebarOpen && (
+        <SideBar
+          pathname={pathname}
+          navItems={navItems}
+          toggleSidebar={toggleSidebar}
+          isSidebarOpen={isSidebarOpen}
+        />
+      )}
+      <div className="hidden md:block">
+        <SideBar pathname={pathname} navItems={navItems} />
+      </div>
     </div>
   )
 }

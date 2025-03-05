@@ -60,14 +60,14 @@ function Setting() {
 
   return (
     <div
-      className={`p-8 h-[89vh] rounded-xl ${showDatePicker ? 'bg-[#F5F7FA]' : 'bg-[#F5F7FA]'}`}
+      className={`p-8 h-screen rounded-xl bg-[#F5F7FA]`}
     >
       <div
-        className={`px-12 py-12 bg-white rounded-3xl ${showDatePicker ? 'backdrop-blur-md pointer-events-none' : 'h-[80vh]'}`}
+        className={`px-12 py-12 bg-white rounded-3xl ${showDatePicker ? 'backdrop-blur-md pointer-events-none' : 'h-screen'}`}
       >
         <ProfileIconUpdate setActiveTab={setActiveTab} activeTab={activeTab} />
         {activeTab === TABS.EDIT && (
-          <form onSubmit={handleSubmit} className="flex gap-[100px] mt-[60px]">
+          <form onSubmit={handleSubmit} className="flex  flex-col  md:flex-row gap-[100px] mt-[60px]">
             <ProfilePictureUpdate />
             <div className="flex flex-col w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
