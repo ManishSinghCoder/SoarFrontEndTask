@@ -15,10 +15,10 @@ const ProfileIconUpdate = ({ setActiveTab, activeTab }: any) => {
         {Object.values(TABS).map((tab) => (
           <button
             key={tab}
-            className={`pb-4 px-6 font-medium ${
+            className={`pb-4 sm:px-6 px-2 text-nowrap font-medium text-[16px] font-inter ${
               activeTab === tab
-                ? 'border-b-2 border-gray-900 text-gray-900'
-                : 'text-gray-500'
+                ? 'border-b-2 border-primary-text-color text-primary-text-color font-bold'
+                : 'text-secondary-text-color'
             }`}
             onClick={() =>
               handleTabChange(tab as (typeof TABS)[keyof typeof TABS])

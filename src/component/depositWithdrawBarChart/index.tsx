@@ -126,7 +126,7 @@ const DepositWithdrawChart: React.FC = () => {
   }, [])
 
   return (
-    <div className="w-full h-[17rem] p-4 bg-white rounded-3xl shadow-custom-card">
+    <div className="w-full h-[17rem] p-4  bg-transparent  md:bg-white rounded-3xl md:shadow-custom-card">
       <canvas ref={canvasRef}></canvas>
     </div>
   )

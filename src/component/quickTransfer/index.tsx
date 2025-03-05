@@ -84,7 +84,7 @@ const QuickTransfer = () => {
   }
 
   return (
-    <div className="bg-white rounded-3xl h-[17rem] py-12 px-6 shadow-custom-card">
+    <div className=" bg-transparent  md:bg-white rounded-3xl h-[17rem] py-12 px-6 md:shadow-custom-card">
       <div>
         <div className="flex items-center justify-evenly gap-[30px]">
           {showLeft && (
@@ -147,20 +147,20 @@ const QuickTransfer = () => {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <p className="text-nowrap font-inter font-[400] text-secondary-text-color">
+        <p className="text-nowrap text-sm md:text-md font-inter font-[400] text-secondary-text-color">
           Write Amount
         </p>
-        <div className="flex items-center  h-12 p-1 bg-gray-100 rounded-full">
+        <div className="flex items-center  h-10 md:h-12 p-1 bg-[#EDF1F7] rounded-full">
           <input
             type="text"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="flex-1 font-inter px-4 text-gray-500 font-medium bg-transparent outline-none w-[100px]"
+            className="flex-1 font-inter px-2 md:px-4 text-gray-500 font-medium bg-transparent outline-none w-[70px] md:w-[100px]"
             placeholder="Enter amount"
           />
           <button className="bg-[#232323] shadow-custom-black-card text-white py-2 px-4 rounded-full flex items-center justify-center space-x-2 h-full hover:bg-gray-700">
-            <span className="font-medium text-sm font-inter">Send</span>
-            <img src={sendIcon} className="w-[26px] h-[22px]" alt="sendIcon" />
+            <span className="font-medium  text-xs md:text-sm font-inter">Send</span>
+            <img src={sendIcon} className=" w-[12px] md:w-[26px] h-[22px]" alt="sendIcon" />
           </button>
         </div>
       </div>

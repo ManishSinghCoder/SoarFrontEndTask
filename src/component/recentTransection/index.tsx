@@ -34,14 +34,20 @@ export default function RecentTransactions() {
   ]
 
   return (
-    <div className="bg-white rounded-3xl p-[20px] shadow-custom-card  flex flex-col gap-[30px]">
+    <div className="  rounded-3xl  flex flex-col gap-2">
       {transactions.map((transaction) => (
         <div key={transaction.id} className="flex items-center gap-4">
           <div className={`${transaction.iconBg} p-3 rounded-full`}>
-            <img src={transaction.icon} className='w-[28px] h-[28px]' alt={transaction.icon} />
+            <img
+              src={transaction.icon}
+              className="w-[28px] h-[28px]"
+              alt={transaction.icon}
+            />
           </div>
           <div className="flex-1">
-            <p className="text-gray-900 font-inter font-[500]">{transaction.title}</p>
+            <p className="text-gray-900 font-inter font-[500]  ">
+              {transaction.title}
+            </p>
             <p className="text-[15px] text-secondary-text-color font-inter">
               {transaction.date}
             </p>

@@ -94,7 +94,7 @@ const ExpensePieChart: React.FC = () => {
   }, [])
 
   return (
-    <div className="w-[350px] h-[17rem] flex justify-center pr-[14px] bg-white rounded-3xl shadow-custom-card">
+    <div className="w-[100%] h-[17rem] flex justify-center items-center pr-[14px] bg-transparent  md:bg-white rounded-3xl md:shadow-custom-card">
       <canvas ref={chartRef}></canvas>
     </div>
   )

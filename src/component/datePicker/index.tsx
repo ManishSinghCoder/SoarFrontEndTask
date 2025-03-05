@@ -2,7 +2,14 @@ import { useState, useEffect } from 'react'
 import { selectDateFromPicker } from '../../redux/formSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { days, months } from './constants'
+import {
+  days,
+  formatDay,
+  isSelected,
+  isToday,
+  isValidDate,
+  months,
+} from './constants'
 
 export default function DatePicker({ setShowDatePicker }: any) {
   const currentDate = new Date()
@@ -17,8 +24,8 @@ export default function DatePicker({ setShowDatePicker }: any) {
     (state: RootState) => state.profile.selectedDate
   )
   const years = Array.from(
-    { length: 21 },
-    (_, i) => currentDate.getFullYear() - 10 + i
+    { length: 51 },
+    (_, i) => currentDate.getFullYear() - 50 + i
   )
 
   useEffect(() => {
@@ -46,14 +53,7 @@ export default function DatePicker({ setShowDatePicker }: any) {
     setCalendarDays(days)
   }, [month, year])
 
-  const isValidDate = (date: Date) => {
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-
-    return date <= today
-  }
-
-  const handleDateSelect = (date: any) => {
+  const handleDateSelect = (date: Date) => {
     if (date) {
       if (isValidDate(date)) {
         dispatch(selectDateFromPicker(date))
@@ -64,28 +64,6 @@ export default function DatePicker({ setShowDatePicker }: any) {
     } else {
       console.log('Please select a date first')
     }
-  }
-
-  const isToday = (date: Date) => {
-    const today = new Date()
-    return (
-      date.getDate() === today.getDate() &&
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear()
-    )
-  }
-
-  const isSelected = (date: Date) => {
-    if (!selectedDate) return false
-    return (
-      date.getDate() === selectedDate.getDate() &&
-      date.getMonth() === selectedDate.getMonth() &&
-      date.getFullYear() === selectedDate.getFullYear()
-    )
-  }
-
-  const formatDay = (date: Date) => {
-    return date.getDate().toString().padStart(2, '0')
   }
 
   return (
@@ -150,10 +128,10 @@ export default function DatePicker({ setShowDatePicker }: any) {
               className={`
                 h-10 w-10 flex items-center justify-center rounded-full text-sm font-medium
                 ${!currentMonth ? 'text-gray-400' : 'text-gray-800'}
-                ${isSelected(date) ? 'bg-primary-text-color text-white' : ''}
-                ${isToday(date) && !isSelected(date) ? 'text-[#232323]' : ''}
+                ${isSelected(date, selectedDate) ? 'bg-primary-text-color text-white' : ''}
+                ${isToday(date) && !isSelected(date, selectedDate) ? 'text-[#232323]' : ''}
                 ${date.getDay() === 0 && currentMonth ? 'text-red-400' : ''}
-                ${!isValidDate(date) ? 'text-gray-200 pointer-events-none' : ''}
+                ${!isValidDate(date) ? 'text-blue-200 pointer-events-none' : ''}
                 hover:bg-primary-text-color hover:text-white transition-colors
               `}
             >
