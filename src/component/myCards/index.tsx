@@ -19,7 +19,7 @@ const MyCards: React.FC<ICardProps> = ({ cards, number }) => {
       {cards.slice(0, number).map((card) => (
         <div
           key={card.id}
-          className={` w-[320px]  md:w-[350px] lg:w-[400px] 2xl:${number === 2 ? 'w-full' : 'w-[400px]'} rounded-2xl shadow-custom-card ${card.variant === 'dark' && 'custom-black-card bg-[linear-gradient(107.38deg,#5B5A6F_2.61%,#000000_101.2%)]'} overflow-hidden `}
+          className={` w-[320px]  md:w-[350px] lg:w-[400px] ${number === 2 ? '2xl:w-full' : '2xl:w-[400px]'} rounded-2xl shadow-custom-card ${card.variant === 'dark' && 'custom-black-card bg-[linear-gradient(107.38deg,#5B5A6F_2.61%,#000000_101.2%)]'} overflow-hidden `}
         >
           <div
             className={` rounded-tl-2xl rounded-tr-2xl flex flex-col gap-8 p-5  ${
