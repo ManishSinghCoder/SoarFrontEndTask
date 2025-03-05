@@ -1,14 +1,17 @@
 import React, { useCallback, useEffect, useRef } from 'react'
-import pickerIcon from '../../../assets/icons/pickerIcon.svg'
+
 import { updateProfileImage } from '../../../redux/formSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
 
+import pickerIcon from '../../../assets/icons/pickerIcon.svg'
+
+
 const ProfilePictureUpdate = () => {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const dispatch = useDispatch()
-  const { profileImage } = useSelector(
-    (state: RootState) => (state as any).profile
+  const profileImage = useSelector(
+    (state: RootState) => state.profile.profileImage
   )
 
   const handleImageClick = useCallback(() => {

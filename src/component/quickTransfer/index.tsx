@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+
 import rightArrow from '../../assets/icons/rightArrow.svg'
 import CEO from '../../assets/images/profile1.svg'
 import Director from '../../assets/images/profile2.svg'

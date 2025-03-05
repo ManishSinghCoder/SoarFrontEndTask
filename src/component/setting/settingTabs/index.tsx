@@ -1,7 +1,13 @@
 import { useCallback } from 'react'
+
 import { TABS } from '../constants'
 
-const ProfileIconUpdate = ({ setActiveTab, activeTab }: any) => {
+interface IProfileIconUpdate {
+  setActiveTab: (tab: string) => void
+  activeTab: string
+}
+
+const ProfileIconUpdate = ({ setActiveTab, activeTab }: IProfileIconUpdate) => {
   const handleTabChange = useCallback(
     (tab: (typeof TABS)[keyof typeof TABS]) => {
       setActiveTab(tab)

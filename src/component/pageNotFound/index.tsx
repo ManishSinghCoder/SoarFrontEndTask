@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+
 import searchIcon from '../../assets/icons/searchIcon.svg'
 import rightArrow from '../../assets/icons/rightArrow.svg'
 

@@ -24,7 +24,7 @@ export const isToday = (date: Date) => {
   )
 }
 
-export const isSelected = (date: Date, selectedDate: any) => {
+export const isSelected = (date: Date, selectedDate: Date | null) => {
   if (!selectedDate) return false
   return (
     date.getDate() === selectedDate.getDate() &&

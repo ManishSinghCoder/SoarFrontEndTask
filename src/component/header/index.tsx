@@ -1,22 +1,22 @@
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+
 import settingIcon from '../../assets/icons/settingsIcon.svg'
 import notificationIcon from '../../assets/icons/notificationIcon.svg'
 import hamburgerIcon from '../../assets/icons/hamburger.svg'
-
 import searchIcon from '../../assets/icons/searchIcon.svg'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
 
 interface navItems {
   icon: string
   label: string
   path: string
 }
-interface headerProps {
+interface IHeaderProps {
   pathname: string
   navItems: navItems[]
   toggleSidebar?: () => void
 }
-const Header = ({ pathname, navItems, toggleSidebar }: headerProps) => {
+const Header = ({ pathname, navItems, toggleSidebar }: IHeaderProps) => {
   const profileImage = useSelector(
     (state: RootState) => state.profile.profileImage
   )

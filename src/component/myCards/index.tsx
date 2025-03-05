@@ -10,10 +10,10 @@ interface Card {
   variant: string
 }
 
-interface CardProps {
+interface ICardProps {
   cards: Card[]
 }
-const MyCards: React.FC<CardProps> = ({ cards }) => {
+const MyCards: React.FC<ICardProps> = ({ cards }) => {
   const maskCardNumber = (number: string) => {
     const parts = number.split(' ')
     if (parts.length !== 4) return number

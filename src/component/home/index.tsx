@@ -1,6 +1,8 @@
-import React from 'react'
+import { useLocation } from 'react-router-dom'
+
 import SideBar from '../sidebar'
 import Header from '../header'
+
 import home from '../../assets/icons/home.svg'
 import transaction from '../../assets/icons/transfer.svg'
 import account from '../../assets/icons/user.svg'
@@ -10,7 +12,6 @@ import loan from '../../assets/icons/loan.svg'
 import service from '../../assets/icons/service.svg'
 import privilege from '../../assets/icons/econometrics.svg'
 import setting from '../../assets/icons/settings.svg'
-import { useLocation } from 'react-router-dom'
 
 const Home = () => {
   const navItems = [

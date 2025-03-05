@@ -1,18 +1,20 @@
 import type React from 'react'
 import { useEffect, useCallback, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { AppDispatch, RootState } from '../../redux/store'
+
 import FormField from './formComponent'
 import ProfileIconUpdate from './settingTabs'
 import ProfilePictureUpdate from './profileIconUpdate'
 import { fields, formatDate, TABS } from './constants'
 import DatePicker from '../datePicker'
-import { AppDispatch, RootState } from '../../redux/store'
 import {
   closeDatePicker,
   toggleDatePicker,
   updateField,
   validateForm,
 } from '../../redux/formSlice'
+
 import arrowDownIcon from '../../assets/icons/rightArrow.svg'
 
 function Setting() {
@@ -20,14 +22,13 @@ function Setting() {
   const { formData, errors, showDatePicker, selectedDate } = useSelector(
     (state: RootState) => (state as any).profile
   )
-  const [activeTab, setActiveTab] = useState<(typeof TABS)[keyof typeof TABS]>(
-    TABS.EDIT
-  )
+  const [activeTab, setActiveTab] = useState<string>(TABS.EDIT)
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target
       dispatch(updateField({ name, value }))
+      dispatch(validateForm())
     },
     [dispatch]
   )
@@ -36,12 +37,17 @@ function Setting() {
     (e: React.FormEvent) => {
       e.preventDefault()
       dispatch(validateForm())
-
-      if (Object.keys(errors).length === 0) {
-        console.log('Profile updated successfully!')
+      if (fields.filter((item) => formData[item.id] === '').length === 0) {
+        if (Object.values(errors).length === 0) {
+          console.log('Profile updated successfully!')
+        } else {
+          console.log('Please fill in all the fields')
+        }
+      } else {
+        console.log('Please fill in all the fields')
       }
     },
-    [dispatch, errors]
+    [dispatch, errors, formData]
   )
 
   useEffect(() => {
@@ -62,7 +68,7 @@ function Setting() {
   return (
     <div className={`md:p-8 md:pb-0 p-4 md:h-[calc(100vh-140px)] rounded-xl`}>
       <div
-        className={`md:pb-0 p-10 bg-white rounded-3xl ${showDatePicker ? 'backdrop-blur-md pointer-events-none' : 'md:h-[calc(100vh-140px)]'}`}
+        className={`md:pb-4 p-10 bg-white rounded-3xl ${showDatePicker ? 'backdrop-blur-md pointer-events-none' : 'md:h-auto'}`}
       >
         {showDatePicker && (
           <div className="absolute md:h-[calc(100vh-140px)] rounded-2xl inset-0 bg-white/10 backdrop-blur-sm pointer-events-auto z-10" />
@@ -71,11 +77,13 @@ function Setting() {
         {activeTab === TABS.EDIT && (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col items-center gap-[50px] md:items-start md:flex-row md:gap-[100px] mt-[60px]"
+            className='flex flex-col items-center gap-[50px] md:items-start md:flex-row md:gap-[100px] mt-[30px]'
           >
             <ProfilePictureUpdate />
             <div className="flex flex-col w-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div
+                className='grid grid-cols-1 md:grid-cols-2 gap-5'
+              >
                 {fields.map(({ id, label, type = 'text', placeHolder }) =>
                   id === 'dateOfBirth' ? (
                     <div key={id}>
@@ -126,7 +134,7 @@ function Setting() {
               <div className="mt-10 flex justify-center md:justify-end">
                 <button
                   type="submit"
-                  className="px-8 py-3 w-full md:w-[30%] bg-default-text-color text-white font-medium rounded-[15px]  focus:ring-2 focus:ring-gray-500 hover:bg-gray-200"
+                  className="px-8 py-3 w-full md:w-[30%] bg-default-text-color text-white font-medium rounded-[15px]  focus:ring-2 focus:ring-gray-500 hover:bg-gray-600"
                 >
                   Save
                 </button>

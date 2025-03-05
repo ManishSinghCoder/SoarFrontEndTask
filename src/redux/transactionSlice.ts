@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
-// Define transaction type
 interface Transaction {
   id: number
   description: string
@@ -9,7 +8,6 @@ interface Transaction {
   date: string
 }
 
-// Define initial state
 interface TransactionState {
   transactions: Transaction[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -22,7 +20,6 @@ const initialState: TransactionState = {
   error: null,
 }
 
-// Simulated API fetch using Promise
 const mockFetchTransactions = (): Promise<Transaction[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -49,11 +46,10 @@ const mockFetchTransactions = (): Promise<Transaction[]> => {
           date: '21 January 2021',
         },
       ])
-    }, 1500) // Simulating network delay
+    }, 1500)
   })
 }
 
-// Async thunk using Promise
 export const fetchTransactions = createAsyncThunk<Transaction[]>(
   'transactions/fetchTransactions',
   async () => {
@@ -61,7 +57,6 @@ export const fetchTransactions = createAsyncThunk<Transaction[]>(
   }
 )
 
-// Transaction slice
 const transactionSlice = createSlice({
   name: 'transactions',
   initialState,
