@@ -21,14 +21,14 @@ const MyCards: React.FC<CardProps> = ({ cards }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] ">
+    <div className="flex gap-[30px]  min-w-max pr-5 ">
       {cards.map((card) => (
         <div
           key={card.id}
-          className={`rounded-2xl shadow-custom-card ${card.variant === 'dark' && 'custom-black-card bg-[linear-gradient(107.38deg,#5B5A6F_2.61%,#000000_101.2%)]'} overflow-hidden `}
+          className={` w-[320px]  md:w-[350px] lg:w-[400px] 2xl:w-full rounded-2xl shadow-custom-card ${card.variant === 'dark' && 'custom-black-card bg-[linear-gradient(107.38deg,#5B5A6F_2.61%,#000000_101.2%)]'} overflow-hidden `}
         >
           <div
-            className={` rounded-tl-2xl rounded-tr-2xl flex flex-col gap-8 p-6 ${
+            className={` rounded-tl-2xl rounded-tr-2xl flex flex-col gap-8 p-5  ${
               card.variant === 'dark'
                 ? 'text-white border-none'
                 : 'bg-white text-gray-800 border-b-[1px] '
@@ -36,7 +36,9 @@ const MyCards: React.FC<CardProps> = ({ cards }) => {
           >
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-md opacity-70 font-lato font-[400]">Balance</p>
+                <p className="text-md opacity-70 font-lato font-[400]">
+                  Balance
+                </p>
                 <p className="text-2xl font-lato font-[600]">{card.balance}</p>
               </div>
 
@@ -47,14 +49,22 @@ const MyCards: React.FC<CardProps> = ({ cards }) => {
               />
             </div>
 
-            <div className=" w-[90%] md:w-[80%] flex justify-between items-start  ">
+            <div className=" w-[80%]  flex justify-between items-start  ">
               <div>
-                <p className="text-md opacity-70  font-lato font-[400]">CARD HOLDER</p>
-                <p className="text-md  font-lato font-[600]">{card.name}</p>
+                <p className="text-md opacity-70  font-lato font-[400] text-nowrap">
+                  CARD HOLDER
+                </p>
+                <p className="text-md  font-lato font-[600] text-nowrap">
+                  {card.name}
+                </p>
               </div>
               <div>
-                <p className="text-md opacity-70  font-lato font-[400]">VALID THRU</p>
-                <p className="text-md  font-lato font-[600]">{card.validThrough}</p>
+                <p className="text-md opacity-70  font-lato font-[400] text-nowrap">
+                  VALID THRU
+                </p>
+                <p className="text-md  font-lato font-[600]">
+                  {card.validThrough}
+                </p>
               </div>
             </div>
           </div>
@@ -69,7 +79,7 @@ const MyCards: React.FC<CardProps> = ({ cards }) => {
             >
               {maskCardNumber(card.cardNumber)}
             </p>
-            <div className="flex -space-x-2">
+            <div className="flex -space-x-3">
               <div
                 className={`w-6 h-6 rounded-full  ${
                   card.variant === 'dark'

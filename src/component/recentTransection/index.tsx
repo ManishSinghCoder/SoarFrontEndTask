@@ -40,12 +40,12 @@ export default function RecentTransactions() {
           <div className={`${transaction.iconBg} p-3 rounded-full`}>
             <img
               src={transaction.icon}
-              className="w-[10px] h-[10px]"
+              className="w-[28px] h-[28px]"
               alt={transaction.icon}
             />
           </div>
           <div className="flex-1">
-            <p className="text-gray-900 text-xs  font-inter font-[500]  ">
+            <p className="text-gray-900 font-inter font-[500]  ">
               {transaction.title}
             </p>
             <p className="text-[15px] text-secondary-text-color font-inter">

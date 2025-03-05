@@ -45,21 +45,18 @@ const SideBar = ({
             viewBox="0 0 512 512"
             xmlSpace="preserve"
           >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g
               id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             ></g>
             <g id="SVGRepo_iconCarrier">
-              {' '}
               <g>
-                {' '}
                 <g>
-                  {' '}
                   <polygon points="512,59.076 452.922,0 256,196.922 59.076,0 0,59.076 196.922,256 0,452.922 59.076,512 256,315.076 452.922,512 512,452.922 315.076,256 "></polygon>{' '}
-                </g>{' '}
-              </g>{' '}
+                </g>
+              </g>
             </g>
           </svg>
         </button>
