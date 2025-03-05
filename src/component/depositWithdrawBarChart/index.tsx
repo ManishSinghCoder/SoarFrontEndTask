@@ -111,7 +111,7 @@ const DepositWithdrawChart: React.FC<IDepossitWithdrawChart> = ({
         chartInstanceRef.current.destroy()
       }
     }
-  }, [])
+  }, [dipositWithdrawDatasets, dipositeWithdrawLabels])
 
   return (
     <div className="w-full h-[17rem] p-4  bg-transparent  md:bg-white rounded-3xl md:shadow-custom-card">

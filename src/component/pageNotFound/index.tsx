@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 import searchIcon from '../../assets/icons/searchIcon.svg'
 import rightArrow from '../../assets/icons/rightArrow.svg'
+import LazyImage from '../lazyImage'
 
 export default function NotFound() {
   return (
@@ -11,8 +12,8 @@ export default function NotFound() {
           <div className="relative h-32 w-32">
             <div className="absolute inset-0 flex items-center justify-center rounded-full border-8 border-gray-100">
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gray-200 text-3xl font-bold text-gray-500">
-                <img
-                  className="h-12 w-12 text-gray-300"
+                <LazyImage
+                  imgClassName="h-12 w-12 text-gray-300"
                   src={searchIcon}
                   alt="search icon"
                 />
@@ -32,9 +33,12 @@ export default function NotFound() {
 
         <div className="flex flex-col justify-center md:flex-row  gap-6  ">
           <button className="border-gray-200 border-[1px] px-6 py-4 rounded-xl bg-white hover:bg-gray-100">
-            <Link to="/dashboard" className="flex items-center justify-center gap-2">
-              <img
-                className="h-4 w-4 font-inter text-gray-300 rotate-180"
+            <Link
+              to="/dashboard"
+              className="flex items-center justify-center gap-2"
+            >
+              <LazyImage
+                imgClassName="h-4 w-4 font-inter text-gray-300 rotate-180"
                 src={rightArrow}
                 alt="search icon"
               />

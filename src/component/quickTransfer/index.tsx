@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import rightArrow from '../../assets/icons/rightArrow.svg'
 import sendIcon from '../../assets/icons/sendIcon.svg'
 import { Contacts } from '../../constent/type'
+import LazyImage from '../lazyImage'
 
 interface IContactsProps {
   contacts: Contacts[]
@@ -49,9 +50,9 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
               className="bg-white  w-10 h-10 rounded-full flex items-center  justify-center p-2 shadow-custom-card"
               onClick={() => scroll('left')}
             >
-              <img
+              <LazyImage
                 src={rightArrow}
-                className="rotate-180 w-[7px] h-[13px]"
+                imgClassName="rotate-180 w-[7px] h-[13px]"
                 alt="leftArrow"
               />
             </button>
@@ -70,12 +71,10 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
               >
                 <div className="relative w-20 h-20 mb-2">
                   <div className="w-20 h-20 rounded-full overflow-hidden">
-                    <img
+                    <LazyImage
                       src={contact.avatar}
                       alt={contact.name}
-                      width={80}
-                      height={80}
-                      className="object-cover"
+                      imgClassName="object-cover w-[80px] h-[80px]"
                     />
                   </div>
                 </div>
@@ -94,9 +93,9 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
               className=" bg-white w-10 h-10 rounded-full flex items-center  justify-center p-2 shadow-custom-card"
               onClick={() => scroll('right')}
             >
-              <img
+              <LazyImage
                 src={rightArrow}
-                className="w-[7px] h-[13px]"
+                imgClassName="w-[7px] h-[13px]"
                 alt="rightArrow"
               />
             </button>
@@ -119,9 +118,9 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
             <span className="font-medium  text-xs md:text-sm font-inter">
               Send
             </span>
-            <img
+            <LazyImage
               src={sendIcon}
-              className=" w-[12px] md:w-[26px] h-[22px]"
+              imgClassName=" w-[12px] md:w-[26px] h-[22px]"
               alt="sendIcon"
             />
           </button>

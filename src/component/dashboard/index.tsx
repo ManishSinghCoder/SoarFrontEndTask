@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCards } from '../../redux/cardSlice'
+import { fetchCards, setNumber } from '../../redux/cardSlice'
 import { AppDispatch, RootState } from '../../redux/store'
 
 import MyCards from '../myCards'
@@ -18,7 +18,7 @@ import { fetchPieChartData } from '../../redux/pieChartSlice'
 
 const Dashboard: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
-  const { cards, status, error } = useSelector(
+  const { cards, status, error, number } = useSelector(
     (state: RootState) => state.cards
   )
   const { contacts, contactStatus, contactsError } = useSelector(
@@ -53,6 +53,7 @@ const Dashboard: React.FC = () => {
   const [atEnd, setAtEnd] = useState(false)
 
   const handleToggleScroll = () => {
+    dispatch(setNumber(cards.length))
     if (cardsContainerRef.current) {
       cardsContainerRef.current.scrollTo({
         left: atEnd ? 0 : cardsContainerRef.current.scrollWidth,
@@ -70,7 +71,7 @@ const Dashboard: React.FC = () => {
     lineStatus === 'loading' ||
     pieChartStatus === 'loading'
   )
-    return <LoadingScreen isError={false}/>
+    return <LoadingScreen isError={false} />
   if (
     error === 'failed' ||
     contactsError === 'failed' ||
@@ -98,7 +99,7 @@ const Dashboard: React.FC = () => {
             ref={cardsContainerRef}
             className="flex-1 max-h-[290px] w-full scrollBarDesign overflow-x-auto overflow-y-hidden whitespace-nowrap"
           >
-            <MyCards cards={cards} />
+            <MyCards cards={cards} number={number} />
           </div>
         </div>
 

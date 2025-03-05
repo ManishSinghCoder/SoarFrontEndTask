@@ -1,4 +1,5 @@
 import { Transaction } from '../../constent/type'
+import LazyImage from '../lazyImage'
 
 interface ITransectionProps {
   transactions: Transaction[]
@@ -9,9 +10,9 @@ const RecentTransactions: React.FC<ITransectionProps> = ({ transactions }) => {
       {transactions.map((transaction) => (
         <div key={transaction.id} className="flex items-center gap-4">
           <div className={`${transaction.iconBg} p-3 rounded-full`}>
-            <img
+            <LazyImage
               src={transaction.icon}
-              className="w-[28px] h-[28px]"
+              imgClassName="w-[28px] h-[28px]"
               alt={transaction.icon}
             />
           </div>

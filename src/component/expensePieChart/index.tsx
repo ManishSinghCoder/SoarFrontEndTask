@@ -93,7 +93,7 @@ const ExpensePieChart: React.FC<IExpensePieChart> = ({
         chartInstanceRef.current.destroy()
       }
     }
-  }, [])
+  }, [pieChartDatasets, pieChartLabels])
 
   return (
     <div className="w-[100%] h-[17rem] flex justify-center items-center pr-[14px] bg-transparent  md:bg-white rounded-3xl md:shadow-custom-card">

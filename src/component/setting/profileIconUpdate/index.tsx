@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
 
 import pickerIcon from '../../../assets/icons/pickerIcon.svg'
+import LazyImage from '../../lazyImage'
 
 
 const ProfilePictureUpdate = () => {
@@ -42,17 +43,17 @@ const ProfilePictureUpdate = () => {
   return (
     <div className="relative w-32 h-28">
       <div className="rounded-full overflow-hidden">
-        <img
+        <LazyImage
           src={profileImage || '/placeholder.svg'}
           alt="Profile"
-          className="w-[200px] h-full md:h-full md:w-[150px] object-cover"
+          imgClassName="w-[200px] h-full md:h-full md:w-[150px] object-cover"
         />
         <button
           type="button"
           onClick={handleImageClick}
           className="absolute bottom-0 right-0 w-8 h-8 bg-black rounded-full flex items-center justify-center"
         >
-          <img src={pickerIcon} alt="profileImagePickerIcon" />
+          <LazyImage src={pickerIcon} alt="profileImagePickerIcon" />
         </button>
         <input
           type="file"

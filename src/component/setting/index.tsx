@@ -16,12 +16,12 @@ import {
 } from '../../redux/formSlice'
 
 import arrowDownIcon from '../../assets/icons/rightArrow.svg'
+import LazyImage from '../lazyImage'
 
 function Setting() {
   const dispatch = useDispatch<AppDispatch>()
-  const { formData, errors, showDatePicker, selectedDate } = useSelector(
-    (state: RootState) => (state as any).profile
-  )
+  const { formData, errors, showDatePicker, selectedDate, profileImage } =
+    useSelector((state: RootState) => (state as any).profile)
   const [activeTab, setActiveTab] = useState<string>(TABS.EDIT)
 
   const handleInputChange = useCallback(
@@ -39,6 +39,10 @@ function Setting() {
       dispatch(validateForm())
       if (fields.filter((item) => formData[item.id] === '').length === 0) {
         if (Object.values(errors).length === 0) {
+          dispatch(updateField({ name: 'profilePicture', value: profileImage }))
+          dispatch(
+            updateField({ name: 'dob', value: formatDate(selectedDate) })
+          )
           console.log('Profile updated successfully!')
         } else {
           console.log('Please fill in all the fields')
@@ -47,7 +51,7 @@ function Setting() {
         console.log('Please fill in all the fields')
       }
     },
-    [dispatch, errors, formData]
+    [dispatch, errors, formData, profileImage, selectedDate]
   )
 
   useEffect(() => {
@@ -77,13 +81,11 @@ function Setting() {
         {activeTab === TABS.EDIT && (
           <form
             onSubmit={handleSubmit}
-            className='flex flex-col items-center gap-[50px] md:items-start md:flex-row md:gap-[100px] mt-[30px]'
+            className="flex flex-col items-center gap-[50px] md:items-start md:flex-row md:gap-[100px] mt-[30px]"
           >
             <ProfilePictureUpdate />
             <div className="flex flex-col w-full">
-              <div
-                className='grid grid-cols-1 md:grid-cols-2 gap-5'
-              >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {fields.map(({ id, label, type = 'text', placeHolder }) =>
                   id === 'dateOfBirth' ? (
                     <div key={id}>
@@ -109,9 +111,9 @@ function Setting() {
                           className={`w-full h-[50px] shadow-custom-card ${selectedDate !== null ? 'text-primary-text-color' : 'text-secondary-text-color'} px-4 py-2 border border-primary-border-color rounded-[15px] focus:ring-2 focus:ring-blue-500 cursor-pointer`}
                         />
                         <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                          <img
+                          <LazyImage
                             src={arrowDownIcon}
-                            className="rotate-90"
+                            imgClassName="rotate-90"
                             alt="arroWdownIcon"
                           />
                         </div>

@@ -88,7 +88,7 @@ const MonthlyDataChart: React.FC<IMonthlyDataChart> = ({
         areaChartInstance.current.destroy()
       }
     }
-  }, [])
+  }, [monthlyDatasets, monthlyDateLabels])
 
   return (
     <div className="w-full h-[17rem] p-4  bg-transparent  md:bg-white rounded-3xl md:shadow-custom-card">
