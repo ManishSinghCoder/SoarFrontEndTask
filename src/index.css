@@ -23,3 +23,12 @@ body {
     @apply text-[22px] font-[600] text-primary-text-color font-inter;
   }
 }
+
+@layer components{
+  .scrollBarDesign{
+    @apply [&::-webkit-scrollbar]:w-[5px]
+    [&::-webkit-scrollbar]:h-[5px]
+  [&::-webkit-scrollbar-track]:bg-gray-100
+  [&::-webkit-scrollbar-thumb]:bg-gray-300
+  }
+}

@@ -1,25 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import profileImageIcon from '../assets/images/profilePicture.svg'
-
-interface ProfileState {
-  formData: {
-    name: string
-    username: string
-    email: string
-    password: string
-    dob: string 
-    presentAddress: string
-    permanentAddress: string
-    city: string
-    postalCode: string
-    country: string
-  }
-  errors: Record<string, string>
-  showDatePicker: boolean
-  selectedDate: Date | null
-  profileImage: string
-}
+import { ProfileState } from '../constent/type';
 
 const initialState: ProfileState = {
   formData: {
@@ -33,6 +15,7 @@ const initialState: ProfileState = {
     city: '',
     postalCode: '',
     country: '',
+    profilePicture: profileImageIcon,
   },
   errors: {},
   showDatePicker: false,
@@ -59,7 +42,7 @@ const profileSlice = createSlice({
       state.showDatePicker = false
     },
     selectDateFromPicker: (state, action: PayloadAction<Date>) => {
-      state.selectedDate = action.payload 
+      state.selectedDate = action.payload
     },
     updateProfileImage: (state, action: PayloadAction<string>) => {
       state.profileImage = action.payload
@@ -76,8 +59,10 @@ const profileSlice = createSlice({
       }
       if (!formData.username.trim()) newErrors.username = 'Username is required'
       if (!formData.city.trim()) newErrors.city = 'City is required'
-      if (!formData.permanentAddress.trim()) newErrors.permanentAddress = 'Parmanent Address is required'
-      if (!formData.presentAddress.trim()) newErrors.presentAddress = 'Present Address is required'
+      if (!formData.permanentAddress.trim())
+        newErrors.permanentAddress = 'Parmanent Address is required'
+      if (!formData.presentAddress.trim())
+        newErrors.presentAddress = 'Present Address is required'
       if (!formData.country.trim()) newErrors.country = 'Country is required'
       if (!formData.password.trim()) newErrors.password = 'Password is required'
       if (!formData.postalCode.trim())

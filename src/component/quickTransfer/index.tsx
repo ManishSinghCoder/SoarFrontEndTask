@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import rightArrow from '../../assets/icons/rightArrow.svg'
-import CEO from '../../assets/images/profile1.svg'
-import Director from '../../assets/images/profile2.svg'
-import Designer from '../../assets/images/profile3.svg'
 import sendIcon from '../../assets/icons/sendIcon.svg'
+import { Contacts } from '../../constent/type'
+import LazyImage from '../lazyImage'
 
-const QuickTransfer = () => {
+interface IContactsProps {
+  contacts: Contacts[]
+}
+const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
   const [amount, setAmount] = useState('500')
   const scrollContainer = useRef<HTMLDivElement>(null)
   const [showLeft, setShowLeft] = useState(false)
@@ -29,51 +31,6 @@ const QuickTransfer = () => {
     return () => container?.removeEventListener('scroll', updateScrollButtons)
   }, [])
 
-  const contacts = [
-    {
-      id: 1,
-      name: 'Livia Bator',
-      title: 'CEO',
-      avatar: CEO,
-    },
-    {
-      id: 2,
-      name: 'Randy Press',
-      title: 'Director',
-      avatar: Director,
-    },
-    {
-      id: 3,
-      name: 'Workman',
-      title: 'Designer',
-      avatar: Designer,
-    },
-    {
-      id: 4,
-      name: 'Sarah Jones',
-      title: 'Developer',
-      avatar: Director,
-    },
-    {
-      id: 5,
-      name: 'Mark Twain',
-      title: 'Manager',
-      avatar: Designer,
-    },
-    {
-      id: 6,
-      name: 'Sarah Jones',
-      title: 'Developer',
-      avatar: Director,
-    },
-    {
-      id: 7,
-      name: 'Mark Twain',
-      title: 'Manager',
-      avatar: Designer,
-    },
-  ]
-
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainer.current) {
       const scrollAmount = 100
@@ -93,9 +50,9 @@ const QuickTransfer = () => {
               className="bg-white  w-10 h-10 rounded-full flex items-center  justify-center p-2 shadow-custom-card"
               onClick={() => scroll('left')}
             >
-              <img
+              <LazyImage
                 src={rightArrow}
-                className="rotate-180 w-[7px] h-[13px]"
+                imgClassName="rotate-180 w-[7px] h-[13px]"
                 alt="leftArrow"
               />
             </button>
@@ -114,12 +71,10 @@ const QuickTransfer = () => {
               >
                 <div className="relative w-20 h-20 mb-2">
                   <div className="w-20 h-20 rounded-full overflow-hidden">
-                    <img
+                    <LazyImage
                       src={contact.avatar}
                       alt={contact.name}
-                      width={80}
-                      height={80}
-                      className="object-cover"
+                      imgClassName="object-cover w-[80px] h-[80px]"
                     />
                   </div>
                 </div>
@@ -138,9 +93,9 @@ const QuickTransfer = () => {
               className=" bg-white w-10 h-10 rounded-full flex items-center  justify-center p-2 shadow-custom-card"
               onClick={() => scroll('right')}
             >
-              <img
+              <LazyImage
                 src={rightArrow}
-                className="w-[7px] h-[13px]"
+                imgClassName="w-[7px] h-[13px]"
                 alt="rightArrow"
               />
             </button>
@@ -160,8 +115,14 @@ const QuickTransfer = () => {
             placeholder="Enter amount"
           />
           <button className="bg-[#232323] shadow-custom-black-card text-white py-2 px-4 rounded-full flex items-center justify-center space-x-2 h-full hover:bg-gray-700">
-            <span className="font-medium  text-xs md:text-sm font-inter">Send</span>
-            <img src={sendIcon} className=" w-[12px] md:w-[26px] h-[22px]" alt="sendIcon" />
+            <span className="font-medium  text-xs md:text-sm font-inter">
+              Send
+            </span>
+            <LazyImage
+              src={sendIcon}
+              imgClassName=" w-[12px] md:w-[26px] h-[22px]"
+              alt="sendIcon"
+            />
           </button>
         </div>
       </div>

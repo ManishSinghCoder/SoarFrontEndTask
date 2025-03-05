@@ -1,19 +1,13 @@
 import darkchip from '../../assets/icons/Chip_Card_dark.svg'
 import lightchip from '../../assets/icons/Chip_Card.svg'
-
-interface Card {
-  id: number
-  name: string
-  balance: string
-  cardNumber: string
-  validThrough: string
-  variant: string
-}
+import { Card } from '../../constent/type'
+import LazyImage from '../lazyImage'
 
 interface ICardProps {
   cards: Card[]
+  number: number
 }
-const MyCards: React.FC<ICardProps> = ({ cards }) => {
+const MyCards: React.FC<ICardProps> = ({ cards, number }) => {
   const maskCardNumber = (number: string) => {
     const parts = number.split(' ')
     if (parts.length !== 4) return number
@@ -22,10 +16,10 @@ const MyCards: React.FC<ICardProps> = ({ cards }) => {
 
   return (
     <div className="flex gap-[30px]  min-w-max pr-5 ">
-      {cards.map((card) => (
+      {cards.slice(0, number).map((card) => (
         <div
           key={card.id}
-          className={` w-[320px]  md:w-[350px] lg:w-[400px] 2xl:w-full rounded-2xl shadow-custom-card ${card.variant === 'dark' && 'custom-black-card bg-[linear-gradient(107.38deg,#5B5A6F_2.61%,#000000_101.2%)]'} overflow-hidden `}
+          className={` w-[320px]  md:w-[350px] lg:w-[400px] 2xl:${number === 2 ? 'w-full' : 'w-[400px]'} rounded-2xl shadow-custom-card ${card.variant === 'dark' && 'custom-black-card bg-[linear-gradient(107.38deg,#5B5A6F_2.61%,#000000_101.2%)]'} overflow-hidden `}
         >
           <div
             className={` rounded-tl-2xl rounded-tr-2xl flex flex-col gap-8 p-5  ${
@@ -42,10 +36,10 @@ const MyCards: React.FC<ICardProps> = ({ cards }) => {
                 <p className="text-2xl font-lato font-[600]">{card.balance}</p>
               </div>
 
-              <img
+              <LazyImage
                 src={`${card.variant === 'dark' ? lightchip : darkchip}`}
                 alt="Icon"
-                className="w-10 h-10"
+                imgClassName="w-10 h-10"
               />
             </div>
 
