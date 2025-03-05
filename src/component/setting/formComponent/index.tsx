@@ -35,7 +35,7 @@ function FormField({
           error ? 'border-red-500' : 'border-primary-border-color '
         }`}
       />
-      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+      {error && <span className="mt-1 text-sm text-red-600">{error}</span>}
     </div>
   )
 }

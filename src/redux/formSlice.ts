@@ -76,6 +76,10 @@ const profileSlice = createSlice({
       }
       if (!formData.username.trim()) newErrors.username = 'Username is required'
       if (!formData.city.trim()) newErrors.city = 'City is required'
+      if (!formData.permanentAddress.trim()) newErrors.permanentAddress = 'Parmanent Address is required'
+      if (!formData.presentAddress.trim()) newErrors.presentAddress = 'Present Address is required'
+      if (!formData.country.trim()) newErrors.country = 'Country is required'
+      if (!formData.password.trim()) newErrors.password = 'Password is required'
       if (!formData.postalCode.trim())
         newErrors.postalCode = 'Postal code is required'
 
