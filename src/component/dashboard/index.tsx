@@ -10,10 +10,8 @@ import MonthlyDataChart from '../monthlyDataAreaChart'
 import DepositWithdrawChart from '../depositWithdrawBarChart'
 import ExpensePieChart from '../expensePieChart'
 import LoadingScreen from '../loadingScreen'
-interface Idashboard {
-  isSidebarOpen: boolean
-}
-const Dashboard: React.FC<Idashboard> = ({ isSidebarOpen }) => {
+
+const Dashboard: React.FC = () => {
   const dispatch = useDispatch<ThunkDispatch<RootState, unknown, any>>()
   const { cards, status, error } = useSelector(
     (state: RootState) => state.cards
@@ -40,9 +38,7 @@ const Dashboard: React.FC<Idashboard> = ({ isSidebarOpen }) => {
   if (status === 'failed') return <p>Error: {error}</p>
 
   return (
-    <div
-      className={`w-full flex flex-col gap-[18px] md:p-[30px] pl-6 py-6 ${isSidebarOpen && 'h-[82vh]'}`}
-    >
+    <div className="w-full flex flex-col gap-[18px] md:p-[30px] pl-6 py-6">
       <div className="w-full flex flex-col md:flex-row justify-center gap-[18px] items-stretch">
         <div className="w-[100%] md:w-[calc(100%-355px)] flex flex-col gap-[18px] ">
           <div className="flex justify-between items-center">

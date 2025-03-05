@@ -54,7 +54,7 @@ function App() {
   return (
     <div className="flex flex-column justify-content-center align-items-center relative bg-[#F5F7FA]">
       <div
-        className={`flex flex-col absolute right-0 w-full lg:w-[calc(100%-250px)] bg-[#F5F7FA] transition-all  ${isSidebarOpen ? 'md:block md:pointer-events-none overflow-hidden' : ''}`}
+        className={`flex flex-col absolute right-0 w-full lg:w-[calc(100%-250px)] bg-[#F5F7FA] transition-all  ${isSidebarOpen ? 'pointer-events-none overflow-hidden h-screen' : ''}`}
       >
         <Header
           pathname={pathname}
@@ -67,8 +67,8 @@ function App() {
         )}
 
         <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard" element={<Dashboard  isSidebarOpen={isSidebarOpen}/>} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/setting" element={<Setting />} />
         </Routes>
