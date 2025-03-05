@@ -57,7 +57,7 @@ const profileSlice = createSlice({
     closeDatePicker: (state) => {
       state.showDatePicker = false
     },
-    selectDateFromPicker: (state, action: PayloadAction<string>) => {
+    selectDateFromPicker: (state, action: PayloadAction<Date>) => {
       state.selectedDate = action.payload
     },
     updateProfileImage: (state, action: PayloadAction<string>) => {

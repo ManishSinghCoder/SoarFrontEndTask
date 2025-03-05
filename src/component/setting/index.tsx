@@ -13,6 +13,7 @@ import {
   updateField,
   validateForm,
 } from '../../redux/formSlice'
+import arrowDownIcon from '../../assets/icons/rightArrow.svg'
 
 function Setting() {
   const dispatch = useDispatch<AppDispatch>()
@@ -59,15 +60,19 @@ function Setting() {
   }, [dispatch, showDatePicker])
 
   return (
-    <div
-      className={`p-8 h-screen rounded-xl bg-[#F5F7FA]`}
-    >
+    <div className={`md:p-8 p-4 md:h-screen rounded-xl bg-[#F5F7FA]`}>
       <div
-        className={`px-12 py-12 bg-white rounded-3xl ${showDatePicker ? 'backdrop-blur-md pointer-events-none' : 'h-screen'}`}
+        className={`md:px-12 md:py-12 p-10 bg-white rounded-3xl ${showDatePicker ? 'backdrop-blur-md pointer-events-none' : 'md:h-screen'}`}
       >
+        {showDatePicker && (
+          <div className="absolute inset-0 bg-black/10 backdrop-blur-sm pointer-events-auto z-10" />
+        )}
         <ProfileIconUpdate setActiveTab={setActiveTab} activeTab={activeTab} />
         {activeTab === TABS.EDIT && (
-          <form onSubmit={handleSubmit} className="flex  flex-col  md:flex-row gap-[100px] mt-[60px]">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center gap-[50px] md:items-start md:flex-row md:gap-[100px] mt-[60px]"
+          >
             <ProfilePictureUpdate />
             <div className="flex flex-col w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -78,7 +83,7 @@ function Setting() {
                         htmlFor="dob"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        Date of Birth
+                        {label}
                       </label>
                       <div className="relative">
                         <input
@@ -91,19 +96,11 @@ function Setting() {
                           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 cursor-pointer"
                         />
                         <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                          <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="text-gray-400"
-                          >
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                          </svg>
+                          <img
+                            src={arrowDownIcon}
+                            className="rotate-90"
+                            alt="arroWdownIcon"
+                          />
                         </div>
                       </div>
                     </div>
@@ -120,10 +117,10 @@ function Setting() {
                   )
                 )}
               </div>
-              <div className="mt-10 flex justify-end">
+              <div className="mt-10 flex justify-center md:justify-end">
                 <button
                   type="submit"
-                  className="px-8 py-3 bg-gray-900 text-white font-medium rounded-md hover:bg-gray-800 focus:ring-2 focus:ring-gray-500"
+                  className="px-8 py-3 w-full md:w-[30%] bg-gray-900 text-white font-medium rounded-md hover:bg-gray-800 focus:ring-2 focus:ring-gray-500"
                 >
                   Save
                 </button>
@@ -133,7 +130,7 @@ function Setting() {
         )}
       </div>
       {showDatePicker && (
-        <div className="absolute inset-0 flex items-center justify-center top-20 left-0 right-0">
+        <div className="absolute inset-0 flex items-center justify-center top-[35rem] md:top-20 left-0 right-0">
           <DatePicker setShowDatePicker={() => dispatch(closeDatePicker())} />
         </div>
       )}

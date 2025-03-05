@@ -24,7 +24,7 @@ export const fields = [
   { id: 'username', label: 'User Name' },
   { id: 'email', label: 'Email', type: 'email' },
   { id: 'password', label: 'Password', type: 'password' },
-  { id: 'dateOfBirth', label: 'Date Of Birth', type: 'text' },
+  { id: 'dateOfBirth', label: 'Date of Birth', type: 'text' },
   { id: 'presentAddress', label: 'Present Address' },
   { id: 'permanentAddress', label: 'Permanent Address' },
   { id: 'city', label: 'City' },

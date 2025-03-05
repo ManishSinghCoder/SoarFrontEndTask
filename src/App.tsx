@@ -40,28 +40,32 @@ function App() {
   useEffect(() => {
     const handleResize = () => {
       if (isSidebarOpen && window.innerWidth > 600) {
-        setIsSidebarOpen(false); 
+        setIsSidebarOpen(false)
       }
-    };
-  
-    window.addEventListener("resize", handleResize);
-  
+    }
+
+    window.addEventListener('resize', handleResize)
+
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isSidebarOpen]);
-  
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [isSidebarOpen])
 
   return (
-    <div className="flex flex-column justify-content-center align-items-center ">
+    <div className="flex flex-column justify-content-center align-items-center relative">
       <div
-        className={`flex flex-col absolute right-0 w-full lg:w-[calc(100%-250px)] bg-[#F5F7FA] ${isSidebarOpen ? 'hidden' : ''}`}
+        className={`flex flex-col absolute right-0 w-full lg:w-[calc(100%-250px)] bg-[#F5F7FA] transition-all  ${isSidebarOpen ? 'md:block md:pointer-events-none hidden' : ''}`}
       >
         <Header
           pathname={pathname}
           navItems={navItems}
           toggleSidebar={toggleSidebar}
         />
+
+        {isSidebarOpen && (
+          <div className="absolute inset-0 bg-black/10 backdrop-blur-sm pointer-events-auto z-10" />
+        )}
+
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
@@ -76,7 +80,7 @@ function App() {
           isSidebarOpen={isSidebarOpen}
         />
       )}
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <SideBar pathname={pathname} navItems={navItems} />
       </div>
     </div>

@@ -22,10 +22,10 @@ const Header = ({ pathname, navItems, toggleSidebar }: headerProps) => {
   )
   return (
     <>
-      <header className="flex h-[100px] items-center justify-between md:border-b border-gray-200 pr-[40px] bg-white">
+      <header className="flex h-[100px] items-center justify-between lg:border-b border-gray-200 pr-[40px] bg-white">
         <div className="flex w-full items-center justify-between pl-[40px]">
           <img
-            className="cursor-pointer w-5 h-5  md:hidden"
+            className="cursor-pointer w-5 h-5  lg:hidden"
             src={hamburgerIcon}
             alt="hamburger icon"
             onClick={toggleSidebar}

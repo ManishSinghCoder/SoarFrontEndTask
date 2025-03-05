@@ -20,10 +20,9 @@ const SideBar = ({
   toggleSidebar,
   isSidebarOpen,
 }: sidebarProps) => {
-  console.log(isSidebarOpen);
   
   return (
-    <div className=" w-full   md:w-[250px] bg-white h-screen border-r border-[#E6EFF5] relative left-0">
+    <div className=" w-full z-10 md:w-[300px] lg:w-[250px] bg-white h-screen border-r border-[#E6EFF5] relative left-0">
       <div className="flex items-center w-[250px] text-gray-400 h-[100px]  pl-[40px]">
         <Link to="/" className="flex items-center gap-[10px]">
           <img src={soarIcon} className="w-[35px] h-[35px]" alt="soar icon" />
@@ -33,7 +32,7 @@ const SideBar = ({
         </Link>
         <button
           onClick={toggleSidebar}
-          className="text-white text-3xl px-2 py-1 text-center absolute top-4 right-5 rounded-3xl  md:hidden"
+          className="text-white text-3xl px-2 py-1 text-center absolute top-9 lg:top-4 right-5 rounded-3xl  lg:hidden"
         >
           <svg
             fill="#BDBDBD"
