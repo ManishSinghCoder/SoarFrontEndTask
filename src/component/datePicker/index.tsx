@@ -24,8 +24,8 @@ export default function DatePicker({ setShowDatePicker }: any) {
     (state: RootState) => state.profile.selectedDate
   )
   const years = Array.from(
-    { length: 21 },
-    (_, i) => currentDate.getFullYear() - 10 + i
+    { length: 51 },
+    (_, i) => currentDate.getFullYear() - 50 + i
   )
 
   useEffect(() => {

@@ -7,7 +7,7 @@ interface ProfileState {
     username: string
     email: string
     password: string
-    dob: string
+    dob: string 
     presentAddress: string
     permanentAddress: string
     city: string
@@ -16,22 +16,22 @@ interface ProfileState {
   }
   errors: Record<string, string>
   showDatePicker: boolean
-  selectedDate: any
+  selectedDate: Date | null
   profileImage: string
 }
 
 const initialState: ProfileState = {
   formData: {
-    name: 'Charlene Reed',
-    username: 'Charlene Reed',
-    email: 'charlenereed@gmail.com',
-    password: '**********',
-    dob: '25 January 1990',
-    presentAddress: 'San Jose, California, USA',
-    permanentAddress: 'San Jose, California, USA',
-    city: 'San Jose',
-    postalCode: '45962',
-    country: 'USA',
+    name: '',
+    username: '',
+    email: '',
+    password: '',
+    dob: '',
+    presentAddress: '',
+    permanentAddress: '',
+    city: '',
+    postalCode: '',
+    country: '',
   },
   errors: {},
   showDatePicker: false,
@@ -58,7 +58,7 @@ const profileSlice = createSlice({
       state.showDatePicker = false
     },
     selectDateFromPicker: (state, action: PayloadAction<Date>) => {
-      state.selectedDate = action.payload
+      state.selectedDate = action.payload 
     },
     updateProfileImage: (state, action: PayloadAction<string>) => {
       state.profileImage = action.payload

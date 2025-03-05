@@ -52,7 +52,7 @@ function App() {
   }, [isSidebarOpen])
 
   return (
-    <div className="flex flex-column justify-content-center align-items-center relative">
+    <div className="flex flex-column justify-content-center align-items-center relative bg-[#F5F7FA]">
       <div
         className={`flex flex-col absolute right-0 w-full lg:w-[calc(100%-250px)] bg-[#F5F7FA] transition-all  ${isSidebarOpen ? 'md:block md:pointer-events-none hidden' : ''}`}
       >

@@ -38,11 +38,11 @@ const ProfilePictureUpdate = () => {
 
   return (
     <div className="relative w-32 h-28">
-      <div className="w-full h-full rounded-full overflow-hidden">
+      <div className="rounded-full overflow-hidden">
         <img
           src={profileImage || '/placeholder.svg'}
           alt="Profile"
-          className="w-full h-full object-cover"
+          className="w-[200px] h-full md:h-full md:w-[150px] object-cover"
         />
         <button
           type="button"
