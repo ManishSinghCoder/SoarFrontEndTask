@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 
-import rightArrow from '../../assets/icons/rightArrow.svg'
-import sendIcon from '../../assets/icons/sendIcon.svg'
 import { Contacts } from '../../constants/type'
 import LazyImage from '../lazyImage'
+import { ICONS } from '../../constants/icons'
 
 interface IContactsProps {
   contacts: Contacts[]
@@ -51,7 +50,7 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
               onClick={() => scroll('left')}
             >
               <LazyImage
-                src={rightArrow}
+                src={ICONS.rightArrow}
                 imgClassName="rotate-180 w-[7px] h-[13px]"
                 alt="leftArrow"
               />
@@ -94,7 +93,7 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
               onClick={() => scroll('right')}
             >
               <LazyImage
-                src={rightArrow}
+                src={ICONS.rightArrow}
                 imgClassName="w-[7px] h-[13px]"
                 alt="rightArrow"
               />
@@ -119,7 +118,7 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
               Send
             </span>
             <LazyImage
-              src={sendIcon}
+              src={ICONS.send}
               imgClassName=" w-[12px] md:w-[26px] h-[22px]"
               alt="sendIcon"
             />

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import profileImageIcon from '../assets/images/profilePicture.svg'
 import { ProfileState } from '../constants/type';
+import { IMAGES } from '../constants/icons';
 
 const initialState: ProfileState = {
   formData: {
@@ -15,12 +15,12 @@ const initialState: ProfileState = {
     city: '',
     postalCode: '',
     country: '',
-    profilePicture: profileImageIcon,
+    profilePicture: IMAGES.profile,
   },
   errors: {},
   showDatePicker: false,
   selectedDate: null,
-  profileImage: profileImageIcon,
+  profileImage: IMAGES.profile,
 }
 
 const profileSlice = createSlice({

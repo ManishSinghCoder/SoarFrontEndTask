@@ -50,21 +50,13 @@ const useFetchDashboardData = () => {
     fetchData()
   }, [dispatch])
 
-  const isLoading =
-    initialDashboardData.status === 'loading' ||
-    initialDashboardData.contactStatus === 'loading' ||
-    initialDashboardData.transectionStatus === 'loading' ||
-    initialDashboardData.barStatus === 'loading' ||
-    initialDashboardData.lineStatus === 'loading' ||
-    initialDashboardData.pieChartStatus === 'loading'
+  const isLoading = Object.values(initialDashboardData).some(
+    (status) => status === 'loading'
+  )
 
-  const isError =
-    initialDashboardData.error === 'failed' ||
-    initialDashboardData.contactsError === 'failed' ||
-    initialDashboardData.transectionsError === 'failed' ||
-    initialDashboardData.barError === 'failed' ||
-    initialDashboardData.lineError === 'failed' ||
-    initialDashboardData.pieChartError === 'failed'
+  const isError = Object.values(initialDashboardData).some(
+    (error) => error === 'failed'
+  )
 
   return { isLoading, isError, initialDashboardData }
 }

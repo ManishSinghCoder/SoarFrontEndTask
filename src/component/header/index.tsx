@@ -1,12 +1,8 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-
-import settingIcon from '../../assets/icons/settingsIcon.svg'
-import notificationIcon from '../../assets/icons/notificationIcon.svg'
-import hamburgerIcon from '../../assets/icons/hamburger.svg'
-import searchIcon from '../../assets/icons/searchIcon.svg'
 import React from 'react'
 import LazyImage from '../lazyImage'
+import { ICONS } from '../../constants/icons'
 
 interface navItems {
   icon: string
@@ -28,7 +24,7 @@ const Header = ({ pathname, navItems, toggleSidebar }: IHeaderProps) => {
           <div className="lg:hidden" onClick={toggleSidebar}>
             <LazyImage
               imgClassName="cursor-pointer w-5 h-5"
-              src={hamburgerIcon}
+              src={ICONS.hamburger}
               alt="hamburger icon"
             />
           </div>
@@ -39,7 +35,7 @@ const Header = ({ pathname, navItems, toggleSidebar }: IHeaderProps) => {
             <div className=" hidden md:block relative">
               <LazyImage
                 imgClassName="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
-                src={searchIcon}
+                src={ICONS.search}
                 alt="search icon"
               />
               <input
@@ -50,10 +46,10 @@ const Header = ({ pathname, navItems, toggleSidebar }: IHeaderProps) => {
               />
             </div>
             <div className="hidden md:flex cursor-pointer h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
-              <LazyImage src={settingIcon} alt="setting icon" />
+              <LazyImage src={ICONS.navSetting} alt="setting icon" />
             </div>
             <div className=" hidden md:flex  relative cursor-pointer  h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
-              <LazyImage src={notificationIcon} alt="notification icon" />
+              <LazyImage src={ICONS.notification} alt="notification icon" />
               <span className="absolute font-inter right-[5px] top-[2px] flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-xs text-white">
                 0
               </span>
@@ -71,7 +67,7 @@ const Header = ({ pathname, navItems, toggleSidebar }: IHeaderProps) => {
       <div className="md:hidden w-full flex items-center justify-center px-[20px] pb-[20px] bg-white  relative">
         <LazyImage
           imgClassName=" absolute left-[30px]  h-4 w-4  text-gray-400"
-          src={searchIcon}
+          src={ICONS.search}
           alt="search icon"
         />
         <input

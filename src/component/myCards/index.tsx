@@ -1,5 +1,4 @@
-import darkchip from '../../assets/icons/Chip_Card_dark.svg'
-import lightchip from '../../assets/icons/Chip_Card.svg'
+import { ICONS } from '../../constants/icons'
 import { Card } from '../../constants/type'
 import LazyImage from '../lazyImage'
 
@@ -37,7 +36,7 @@ const MyCards: React.FC<ICardProps> = ({ cards, number }) => {
               </div>
 
               <LazyImage
-                src={`${card.variant === 'dark' ? lightchip : darkchip}`}
+                src={`${card.variant === 'dark' ? ICONS.lightChip : ICONS.darkChip}`}
                 alt="Icon"
                 imgClassName="w-10 h-10"
               />

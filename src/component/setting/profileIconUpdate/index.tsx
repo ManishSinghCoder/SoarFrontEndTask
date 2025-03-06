@@ -4,9 +4,9 @@ import { updateProfileImage } from '../../../redux/formSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
 
-import pickerIcon from '../../../assets/icons/pickerIcon.svg'
 import LazyImage from '../../lazyImage'
 import toast from 'react-hot-toast'
+import { ICONS } from '../../../constants/icons'
 
 const ProfilePictureUpdate = () => {
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -58,7 +58,7 @@ const ProfilePictureUpdate = () => {
           onClick={handleImageClick}
           className="absolute bottom-0 right-0 w-8 h-8 bg-black rounded-full flex items-center justify-center"
         >
-          <LazyImage src={pickerIcon} alt="profileImagePickerIcon" />
+          <LazyImage src={ICONS.picker} alt="profileImagePickerIcon" />
         </button>
         <input
           type="file"

@@ -1,0 +1,32 @@
+export const ICONS = {
+  setting: '/assets/icons/settings.svg',
+  navSetting: '/assets/icons/settingsIcon.svg',
+  notification: '/assets/icons/notificationIcon.svg',
+  hamburger: '/assets/icons/hamburger.svg',
+  search: '/assets/icons/searchIcon.svg',
+  home: '/assets/icons/home.svg',
+  transaction: '/assets/icons/transfer.svg',
+  account: '/assets/icons/user.svg',
+  investment: '/assets/icons/economic-investment.svg',
+  creditCard: '/assets/icons/credit-card.svg',
+  loan: '/assets/icons/loan.svg',
+  service: '/assets/icons/service.svg',
+  privilege: '/assets/icons/econometrics.svg',
+  darkChip: '/assets/icons/Chip_Card_dark.svg',
+  lightChip: '/assets/icons/Chip_Card.svg',
+  rightArrow: '/assets/icons/rightArrow.svg',
+  arrowDown: '/assets/icons/rightArrow.svg',
+  send: '/assets/icons/sendIcon.svg',
+  picker: '/assets/icons/pickerIcon.svg',
+  soar: '/assets/icons/mingcute_task-fill.svg',
+  paypal: '/assets/icons/payPalIcon.svg',
+  currency: '/assets/icons/currencyIcon.svg',
+  masterCard: '/assets/icons/creaditIcon.svg',
+}
+
+export const IMAGES = {
+  profile: '/assets/images/profilePicture.svg',
+  ceo: '/assets/images/profile1.svg',
+  director: '/assets/images/profile2.svg',
+  designer: '/assets/images/profile3.svg',
+}
