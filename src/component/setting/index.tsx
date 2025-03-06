@@ -106,7 +106,7 @@ function Setting() {
                       key={id}
                       id={id}
                       label={label}
-                      type={id === 'postalCode' ? 'number' : 'text'}
+                      type='text'
                       value={formData[id]}
                       onChange={handleInputChange}
                       error={errors[id]}

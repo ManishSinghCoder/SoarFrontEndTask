@@ -18,6 +18,7 @@ interface IFormFieldProps {
   placeHolder: string
   selectedDate: number | string | null
 }
+const numberRegex = /^[0-9]*$/
 
 function FormField({
   id,
@@ -43,6 +44,15 @@ function FormField({
           type={type}
           id={id}
           name={id}
+          pattern={id === 'postalCode' ? '[0-9]*' : ''}
+          inputMode={id === 'postalCode' ? 'numeric' : 'text'}
+          value={
+            id === 'postalCode'
+              ? numberRegex.test(value)
+                ? value
+                : '0'
+              : value
+          }
           placeholder={placeHolder}
           onChange={onChange}
           className={`appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full h-[50px] px-4 py-2 shadow-custom-card border border-primary-border-color focus:border-[1px] ${value.length > 0 ? 'text-primary-text-color' : 'placeholder-secondary-text-color'} rounded-[15px] ${

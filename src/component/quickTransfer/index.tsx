@@ -7,6 +7,9 @@ import { ICONS } from '../../constants/icons'
 interface IContactsProps {
   contacts: Contacts[]
 }
+
+const numberRegex = /^[0-9]*$/
+
 const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
   const [amount, setAmount] = useState('500')
   const scrollContainer = useRef<HTMLDivElement>(null)
@@ -107,9 +110,15 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
         </p>
         <div className="flex items-center  h-10 md:h-12 p-1 bg-[#EDF1F7] rounded-full">
           <input
-            type="number"
+            type="text"
+            pattern="[0-9]*"
+            inputMode="numeric"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) =>
+              setAmount(
+                numberRegex.test(e.target.value) ? e.target.value : '500'
+              )
+            }
             className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none flex-1 font-inter px-2 md:px-4 text-gray-500 font-medium bg-transparent outline-none w-[70px] md:w-[100px]"
             placeholder="Enter amount"
           />
