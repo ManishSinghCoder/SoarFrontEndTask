@@ -106,7 +106,7 @@ function Setting() {
                       key={id}
                       id={id}
                       label={label}
-                      type='text'
+                      type={id === 'password' ? 'password' : 'text'}
                       value={formData[id]}
                       onChange={handleInputChange}
                       error={errors[id]}
