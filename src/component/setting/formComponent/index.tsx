@@ -44,7 +44,6 @@ function FormField({
           type={type}
           id={id}
           name={id}
-          pattern={id === 'postalCode' ? '[0-9]*' : ''}
           inputMode={id === 'postalCode' ? 'numeric' : 'text'}
           value={
             id === 'postalCode'
