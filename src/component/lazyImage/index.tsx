@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 
-const useLazyLoad = (src: string) => {
+const useLazyLoad = () => {
   const [isVisible, setIsVisible] = useState(false)
   const imgRef = useRef<HTMLImageElement>(null)
 
@@ -23,8 +23,16 @@ const useLazyLoad = (src: string) => {
   return { imgRef, isVisible }
 }
 
-const LazyImage = ({ src, alt, imgClassName }: { src: string; alt: string , imgClassName?: string}) => {
-  const { imgRef, isVisible } = useLazyLoad(src)
+const LazyImage = ({
+  src,
+  alt,
+  imgClassName,
+}: {
+  src: string
+  alt: string
+  imgClassName?: string
+}) => {
+  const { imgRef, isVisible } = useLazyLoad()
 
   return (
     <img

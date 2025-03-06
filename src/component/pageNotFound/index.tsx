@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
-import searchIcon from '../../assets/icons/searchIcon.svg'
-import rightArrow from '../../assets/icons/rightArrow.svg'
 import LazyImage from '../lazyImage'
 import toast from 'react-hot-toast'
+import { ICONS } from '../../constants/icons'
 
 export default function NotFound() {
   const isMounted = useRef(false)
@@ -22,7 +21,7 @@ export default function NotFound() {
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gray-200 text-3xl font-bold text-gray-500">
                 <LazyImage
                   imgClassName="h-12 w-12 text-gray-300"
-                  src={searchIcon}
+                  src={ICONS.search}
                   alt="search icon"
                 />
               </div>
@@ -47,7 +46,7 @@ export default function NotFound() {
             >
               <LazyImage
                 imgClassName="h-4 w-4 font-inter text-gray-300 rotate-180"
-                src={rightArrow}
+                src={ICONS.rightArrow}
                 alt="search icon"
               />
               Back to dashboard

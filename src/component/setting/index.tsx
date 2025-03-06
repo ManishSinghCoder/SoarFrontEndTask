@@ -1,11 +1,8 @@
 import type React from 'react'
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback, useState, lazy, Suspense } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { AppDispatch, RootState } from '../../redux/store'
 
-import FormField from './formComponent'
-import ProfileIconUpdate from './settingTabs'
-import ProfilePictureUpdate from './profileIconUpdate'
 import { fields, formatDate, TABS } from './constants'
 import DatePicker from '../datePicker'
 import {
@@ -14,6 +11,11 @@ import {
   validateForm,
 } from '../../redux/formSlice'
 import toast from 'react-hot-toast'
+import LoadingScreen from '../loadingScreen'
+
+const FormField = lazy(() => import('./formComponent'))
+const ProfileIconUpdate = lazy(() => import('./settingTabs'))
+const ProfilePictureUpdate = lazy(() => import('./profileIconUpdate'))
 
 function Setting() {
   const dispatch = useDispatch<AppDispatch>()
@@ -79,27 +81,39 @@ function Setting() {
         {showDatePicker && (
           <div className="absolute md:h-[calc(100vh-140px)] rounded-2xl inset-0 bg-white/10 backdrop-blur-sm pointer-events-auto z-10" />
         )}
-        <ProfileIconUpdate setActiveTab={setActiveTab} activeTab={activeTab} />
+        <Suspense fallback={<LoadingScreen isError={false} />}>
+          <ProfileIconUpdate
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
+          />
+        </Suspense>
         {activeTab === TABS.EDIT && (
           <form
             onSubmit={handleSubmit}
             className="flex flex-col items-center gap-[50px] md:items-start md:flex-row md:gap-[100px] mt-[30px]"
           >
-            <ProfilePictureUpdate />
+            <Suspense fallback={<LoadingScreen isError={false} />}>
+              <ProfilePictureUpdate />
+            </Suspense>
             <div className="flex flex-col w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {fields.map(({ id, label, placeHolder }) => (
-                  <FormField
+                  <Suspense
                     key={id}
-                    id={id}
-                    label={label}
-                    type={id === 'postalCode' ? 'number' : 'text'}
-                    value={formData[id]}
-                    onChange={handleInputChange}
-                    error={errors[id]}
-                    placeHolder={placeHolder}
-                    selectedDate={selectedDate}
-                  />
+                    fallback={<LoadingScreen isError={false} />}
+                  >
+                    <FormField
+                      key={id}
+                      id={id}
+                      label={label}
+                      type={id === 'postalCode' ? 'number' : 'text'}
+                      value={formData[id]}
+                      onChange={handleInputChange}
+                      error={errors[id]}
+                      placeHolder={placeHolder}
+                      selectedDate={selectedDate}
+                    />
+                  </Suspense>
                 ))}
               </div>
               <div className="mt-10 flex justify-center md:justify-end">

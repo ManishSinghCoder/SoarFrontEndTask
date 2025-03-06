@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import paypalIcon from '../assets/icons/payPalIcon.svg'
-import currencyIcon from '../assets/icons/currencyIcon.svg'
-import masterCardIcon from '../assets/icons/creaditIcon.svg'
 import { Transaction } from '../constants/type'
+import { ICONS } from '../constants/icons'
 
 
 interface TransactionState {
@@ -26,7 +24,7 @@ const mockFetchTransactions = (): Promise<Transaction[]> => {
           title: 'Deposit from my Card',
           date: '28 January 2021',
           amount: '-$850',
-          icon: masterCardIcon,
+          icon: ICONS.masterCard,
           iconBg: 'bg-yellow-100',
           amountColor: 'text-red-500',
       },
@@ -35,7 +33,7 @@ const mockFetchTransactions = (): Promise<Transaction[]> => {
           title: 'Deposit Paypal',
           date: '25 January 2021',
           amount: '+$2,500',
-          icon: paypalIcon,
+          icon: ICONS.paypal,
           iconBg: 'bg-blue-100',
           amountColor: 'text-green-500',
       },
@@ -44,7 +42,7 @@ const mockFetchTransactions = (): Promise<Transaction[]> => {
           title: 'Jemi Wilson',
           date: '21 January 2021',
           amount: '+$5,400',
-          icon: currencyIcon,
+          icon: ICONS.currency,
           iconBg: 'bg-cyan-100',
           amountColor: 'text-green-500',
       },

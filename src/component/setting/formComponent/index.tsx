@@ -5,8 +5,8 @@ import { AppDispatch } from '../../../redux/store'
 import LazyImage from '../../lazyImage'
 import { formatDate } from '../constants'
 
-import arrowDownIcon from '../../../assets/icons/rightArrow.svg'
 import React from 'react'
+import { ICONS } from '../../../constants/icons'
 
 interface IFormFieldProps {
   id: string
@@ -66,7 +66,7 @@ function FormField({
           />
           <div className="absolute inset-y-0 right-0 flex items-center pr-3">
             <LazyImage
-              src={arrowDownIcon}
+              src={ICONS.rightArrow}
               imgClassName="rotate-90"
               alt="arroWdownIcon"
             />

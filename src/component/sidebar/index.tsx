@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
-import soarIcon from '../../assets/icons/mingcute_task-fill.svg'
 import LazyImage from '../lazyImage'
+import { ICONS } from '../../constants/icons'
 
 interface navItems {
   icon: string
@@ -29,7 +29,7 @@ const SideBar = ({
       <div className="flex items-center w-[250px] text-gray-400 h-[100px]  pl-[40px]">
         <Link to="/" className="flex items-center gap-[10px]">
           <LazyImage
-            src={soarIcon}
+            src={ICONS.soar}
             imgClassName="w-[35px] h-[35px]"
             alt="soar icon"
           />
