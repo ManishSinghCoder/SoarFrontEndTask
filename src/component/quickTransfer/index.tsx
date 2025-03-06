@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import rightArrow from '../../assets/icons/rightArrow.svg'
 import sendIcon from '../../assets/icons/sendIcon.svg'
-import { Contacts } from '../../constent/type'
+import { Contacts } from '../../constants/type'
 import LazyImage from '../lazyImage'
 
 interface IContactsProps {
@@ -108,10 +108,10 @@ const QuickTransfer: React.FC<IContactsProps> = ({ contacts }) => {
         </p>
         <div className="flex items-center  h-10 md:h-12 p-1 bg-[#EDF1F7] rounded-full">
           <input
-            type="text"
+            type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="flex-1 font-inter px-2 md:px-4 text-gray-500 font-medium bg-transparent outline-none w-[70px] md:w-[100px]"
+            className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none flex-1 font-inter px-2 md:px-4 text-gray-500 font-medium bg-transparent outline-none w-[70px] md:w-[100px]"
             placeholder="Enter amount"
           />
           <button className="bg-[#232323] shadow-custom-black-card text-white py-2 px-4 rounded-full flex items-center justify-center space-x-2 h-full hover:bg-gray-700">

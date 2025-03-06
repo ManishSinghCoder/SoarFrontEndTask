@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { Dataset } from "../constent/type";
+import { Dataset } from "../constants/type";
 
 
 

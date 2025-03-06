@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchCards, setNumber } from '../../redux/cardSlice'
-import { AppDispatch, RootState } from '../../redux/store'
+import React, { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setNumber } from '../../redux/cardSlice'
+import { AppDispatch } from '../../redux/store'
 
 import MyCards from '../myCards'
 import RecentTransactions from '../recentTransection'
@@ -9,48 +9,27 @@ import QuickTransfer from '../quickTransfer'
 import MonthlyDataChart from '../monthlyDataAreaChart'
 import DepositWithdrawChart from '../depositWithdrawBarChart'
 import ExpensePieChart from '../expensePieChart'
+import useFetchDashboardData from './useFetchDashboardData'
 import LoadingScreen from '../loadingScreen'
-import { fetchContacts } from '../../redux/quickTransferSlice'
-import { fetchTransactions } from '../../redux/transactionSlice'
-import { fetchBarGraphData } from '../../redux/barGraphSlice'
-import { fetchLineGraphData } from '../../redux/lineGraphSlice'
-import { fetchPieChartData } from '../../redux/pieChartSlice'
 
 const Dashboard: React.FC = () => {
+  const cardsContainerRef = useRef<HTMLDivElement>(null)
+  const [atEnd, setAtEnd] = useState(false)
   const dispatch = useDispatch<AppDispatch>()
-  const { cards, status, error, number } = useSelector(
-    (state: RootState) => state.cards
-  )
-  const { contacts, contactStatus, contactsError } = useSelector(
-    (state: RootState) => state.contacts
-  )
-  const { transactions, transectionStatus, transectionsError } = useSelector(
-    (state: RootState) => state.recentTransactions
-  )
+  const { initialDashboardData, isError, isLoading } = useFetchDashboardData()
+
   const {
+    cards,
+    contacts,
+    transactions,
     dipositWithdrawDatasets,
     dipositeWithdrawLabels,
-    barStatus,
-    barError,
-  } = useSelector((state: RootState) => state.barGraph)
-  const { lineDatasets, lineLabels, lineError, lineStatus } = useSelector(
-    (state: RootState) => state.lineGraph
-  )
-  const { pieChartLabels, pieChartDatasets, pieChartError, pieChartStatus } =
-    useSelector((state: RootState) => state.pieChart)
-
-  useEffect(() => {
-    dispatch(fetchCards())
-    dispatch(fetchContacts())
-    dispatch(fetchTransactions())
-    dispatch(fetchBarGraphData())
-    dispatch(fetchLineGraphData())
-    dispatch(fetchPieChartData())
-  }, [dispatch])
-
-  const cardsContainerRef = useRef<HTMLDivElement>(null)
-
-  const [atEnd, setAtEnd] = useState(false)
+    lineDatasets,
+    lineLabels,
+    pieChartLabels,
+    pieChartDatasets,
+    number,
+  } = initialDashboardData
 
   const handleToggleScroll = () => {
     dispatch(setNumber(cards.length))
@@ -63,24 +42,8 @@ const Dashboard: React.FC = () => {
     }
   }
 
-  if (
-    status === 'loading' ||
-    contactStatus === 'loading' ||
-    transectionStatus === 'loading' ||
-    barStatus === 'loading' ||
-    lineStatus === 'loading' ||
-    pieChartStatus === 'loading'
-  )
-    return <LoadingScreen isError={false} />
-  if (
-    error === 'failed' ||
-    contactsError === 'failed' ||
-    transectionsError === 'failed' ||
-    barError === 'failed' ||
-    lineError === 'failed' ||
-    pieChartError === 'failed'
-  )
-    return <LoadingScreen isError={true} />
+  if (isLoading) return <LoadingScreen isError={false} />
+  if (isError) return <LoadingScreen isError={true} />
 
   return (
     <div className="w-full flex flex-col gap-[18px] md:p-[30px] pl-6 py-6">

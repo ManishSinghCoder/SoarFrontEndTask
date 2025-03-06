@@ -11,6 +11,7 @@ import {
   isValidDate,
   months,
 } from './constants'
+import toast from 'react-hot-toast'
 
 interface IDatePicker {
   setShowDatePicker: (show: boolean) => void
@@ -64,10 +65,10 @@ export default function DatePicker({ setShowDatePicker }: IDatePicker) {
         dispatch(selectDateFromPicker(date))
         setShowDatePicker(false)
       } else {
-        console.log('date of birth not in future')
+        toast.error('date of birth not in future')
       }
     } else {
-      console.log('Please select a date first')
+      toast.error('Please select a date first')
     }
   }
 

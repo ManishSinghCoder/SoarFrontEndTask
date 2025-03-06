@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { PieDataset } from "../constent/type";
+import { PieDataset } from "../constants/type";
 
 interface PieChartState {
     pieChartLabels: string[];

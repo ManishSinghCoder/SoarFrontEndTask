@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import CEO from '../assets/images/profile1.svg'
 import Director from '../assets/images/profile2.svg'
 import Designer from '../assets/images/profile3.svg'
-import { Contacts } from '../constent/type'
+import { Contacts } from '../constants/type'
 
 
 

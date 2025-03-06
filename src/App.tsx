@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 
 import Dashboard from './component/dashboard'
 import Setting from './component/setting'
@@ -19,6 +20,8 @@ import setting from './assets/icons/settings.svg'
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const location = useLocation()
+  const { pathname } = location
 
   const navItems = [
     { icon: home, label: 'Overview', path: '/dashboard' },
@@ -32,9 +35,6 @@ function App() {
     { icon: setting, label: 'Setting', path: '/setting' },
   ]
 
-  const location = useLocation()
-  const { pathname } = location
-
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
   }
@@ -44,7 +44,6 @@ function App() {
         setIsSidebarOpen(false)
       }
     }
-
     window.addEventListener('resize', handleResize)
 
     return () => {
@@ -85,6 +84,7 @@ function App() {
       <div className="hidden lg:block">
         <SideBar pathname={pathname} navItems={navItems} />
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   )
 }

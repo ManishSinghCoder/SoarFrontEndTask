@@ -1,6 +1,6 @@
 import darkchip from '../../assets/icons/Chip_Card_dark.svg'
 import lightchip from '../../assets/icons/Chip_Card.svg'
-import { Card } from '../../constent/type'
+import { Card } from '../../constants/type'
 import LazyImage from '../lazyImage'
 
 interface ICardProps {

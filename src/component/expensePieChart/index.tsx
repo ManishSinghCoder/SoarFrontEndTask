@@ -4,7 +4,7 @@ import Chart, {
   ChartData,
   ChartOptions,
 } from 'chart.js/auto'
-import { PieDataset } from '../../constent/type'
+import { PieDataset } from '../../constants/type'
 
 
 
