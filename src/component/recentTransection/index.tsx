@@ -1,4 +1,4 @@
-import { Transaction } from '../../constent/type'
+import { Transaction } from '../../constants/type'
 import LazyImage from '../lazyImage'
 
 interface ITransectionProps {

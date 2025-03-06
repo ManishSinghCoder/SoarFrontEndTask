@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import profileImageIcon from '../assets/images/profilePicture.svg'
-import { ProfileState } from '../constent/type';
+import { ProfileState } from '../constants/type';
 
 const initialState: ProfileState = {
   formData: {
@@ -9,7 +9,7 @@ const initialState: ProfileState = {
     username: '',
     email: '',
     password: '',
-    dob: '',
+    dateOfBirth: '',
     presentAddress: '',
     permanentAddress: '',
     city: '',
@@ -43,6 +43,7 @@ const profileSlice = createSlice({
     },
     selectDateFromPicker: (state, action: PayloadAction<Date>) => {
       state.selectedDate = action.payload
+      state.formData.dateOfBirth = action.payload.toString()
     },
     updateProfileImage: (state, action: PayloadAction<string>) => {
       state.profileImage = action.payload
@@ -65,6 +66,7 @@ const profileSlice = createSlice({
         newErrors.presentAddress = 'Present Address is required'
       if (!formData.country.trim()) newErrors.country = 'Country is required'
       if (!formData.password.trim()) newErrors.password = 'Password is required'
+      if (!formData.dateOfBirth.trim()) newErrors.dateOfBirth = 'Date of birth is required'
       if (!formData.postalCode.trim())
         newErrors.postalCode = 'Postal code is required'
 

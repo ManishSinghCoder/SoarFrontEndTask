@@ -1,10 +1,18 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import searchIcon from '../../assets/icons/searchIcon.svg'
 import rightArrow from '../../assets/icons/rightArrow.svg'
 import LazyImage from '../lazyImage'
+import toast from 'react-hot-toast'
 
 export default function NotFound() {
+  const isMounted = useRef(false)
+  useEffect(() => {
+    if (isMounted.current) return
+    isMounted.current = true
+    toast.error('Opps! look like you are in wrong page', { duration: 800 })
+  }, [])
   return (
     <div className="flex flex-col items-center max-h-screen h-[89vh] justify-center bg-[#F5F7FA] p-4 md:p-8">
       <div className="mx-auto max-w-md text-center">

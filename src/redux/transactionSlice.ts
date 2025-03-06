@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import paypalIcon from '../assets/icons/payPalIcon.svg'
 import currencyIcon from '../assets/icons/currencyIcon.svg'
 import masterCardIcon from '../assets/icons/creaditIcon.svg'
-import { Transaction } from '../constent/type'
+import { Transaction } from '../constants/type'
 
 
 interface TransactionState {

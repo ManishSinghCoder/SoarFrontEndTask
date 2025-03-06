@@ -24,7 +24,7 @@ export interface ProfileState {
     username: string
     email: string
     password: string
-    dob: string
+    dateOfBirth: string
     presentAddress: string
     permanentAddress: string
     city: string

@@ -6,7 +6,7 @@ import { RootState } from '../../../redux/store'
 
 import pickerIcon from '../../../assets/icons/pickerIcon.svg'
 import LazyImage from '../../lazyImage'
-
+import toast from 'react-hot-toast'
 
 const ProfilePictureUpdate = () => {
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -23,30 +23,35 @@ const ProfilePictureUpdate = () => {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0]
       if (file) {
-        const imageUrl = URL.createObjectURL(file)
-        dispatch(updateProfileImage(imageUrl))
-
-        return () => URL.revokeObjectURL(imageUrl)
+        const reader = new FileReader()
+        reader.onloadend = () => {
+          const base64String = reader.result as string
+          sessionStorage.setItem('profileImage', base64String)
+          dispatch(updateProfileImage(base64String))
+        }
+        reader.readAsDataURL(file)
+        toast.success('Profile picture updated successfully!')
       }
     },
     [dispatch]
   )
 
   useEffect(() => {
-    return () => {
-      if (profileImage.startsWith('blob:')) {
-        URL.revokeObjectURL(profileImage)
-      }
+    const storedImage = sessionStorage.getItem('profileImage')
+    if (storedImage === profileImage) {
+      dispatch(updateProfileImage(storedImage))
+    }else{
+      sessionStorage.removeItem('profileImage')
     }
-  }, [profileImage])
+  }, [profileImage, dispatch])
 
   return (
     <div className="relative w-32 h-28">
       <div className="rounded-full overflow-hidden">
         <LazyImage
-          src={profileImage || '/placeholder.svg'}
+          src={profileImage}
           alt="Profile"
-          imgClassName="w-[200px] h-full md:h-full md:w-[150px] object-cover"
+          imgClassName="w-[200px] h-[15vh] md:h-[12vh] md:w-[150px] object-cover"
         />
         <button
           type="button"

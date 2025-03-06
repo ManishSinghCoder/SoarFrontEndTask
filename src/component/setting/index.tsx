@@ -10,16 +10,14 @@ import { fields, formatDate, TABS } from './constants'
 import DatePicker from '../datePicker'
 import {
   closeDatePicker,
-  toggleDatePicker,
   updateField,
   validateForm,
 } from '../../redux/formSlice'
-
-import arrowDownIcon from '../../assets/icons/rightArrow.svg'
-import LazyImage from '../lazyImage'
+import toast from 'react-hot-toast'
 
 function Setting() {
   const dispatch = useDispatch<AppDispatch>()
+  const [loading, setLoading] = useState(false)
   const { formData, errors, showDatePicker, selectedDate, profileImage } =
     useSelector((state: RootState) => (state as any).profile)
   const [activeTab, setActiveTab] = useState<string>(TABS.EDIT)
@@ -36,6 +34,7 @@ function Setting() {
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault()
+      setLoading(true)
       dispatch(validateForm())
       if (fields.filter((item) => formData[item.id] === '').length === 0) {
         if (Object.values(errors).length === 0) {
@@ -43,12 +42,15 @@ function Setting() {
           dispatch(
             updateField({ name: 'dob', value: formatDate(selectedDate) })
           )
-          console.log('Profile updated successfully!')
+          toast.success('Profile updated successfully!')
+          setLoading(false)
         } else {
-          console.log('Please fill in all the fields')
+          toast.error('Please fill all the * fields')
+          setLoading(false)
         }
       } else {
-        console.log('Please fill in all the fields')
+        toast.error('Please fill all the * fields')
+        setLoading(false)
       }
     },
     [dispatch, errors, formData, profileImage, selectedDate]
@@ -86,59 +88,27 @@ function Setting() {
             <ProfilePictureUpdate />
             <div className="flex flex-col w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {fields.map(({ id, label, type = 'text', placeHolder }) =>
-                  id === 'dateOfBirth' ? (
-                    <div key={id}>
-                      <label
-                        htmlFor="dob"
-                        className="block text-sm font-medium text-default-text-color mb-1"
-                      >
-                        {label}
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          id="dob"
-                          name="dob"
-                          value={
-                            selectedDate !== null
-                              ? formatDate(selectedDate)
-                              : placeHolder
-                          }
-                          placeholder={placeHolder}
-                          readOnly
-                          onClick={() => dispatch(toggleDatePicker())}
-                          className={`w-full h-[50px] shadow-custom-card ${selectedDate !== null ? 'text-primary-text-color' : 'text-secondary-text-color'} px-4 py-2 border border-primary-border-color rounded-[15px] focus:ring-2 focus:ring-blue-500 cursor-pointer`}
-                        />
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                          <LazyImage
-                            src={arrowDownIcon}
-                            imgClassName="rotate-90"
-                            alt="arroWdownIcon"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <FormField
-                      key={id}
-                      id={id}
-                      label={label}
-                      type={type}
-                      value={formData[id]}
-                      onChange={handleInputChange}
-                      error={errors[id]}
-                      placeHolder={placeHolder}
-                    />
-                  )
-                )}
+                {fields.map(({ id, label, placeHolder }) => (
+                  <FormField
+                    key={id}
+                    id={id}
+                    label={label}
+                    type={id === 'postalCode' ? 'number' : 'text'}
+                    value={formData[id]}
+                    onChange={handleInputChange}
+                    error={errors[id]}
+                    placeHolder={placeHolder}
+                    selectedDate={selectedDate}
+                  />
+                ))}
               </div>
               <div className="mt-10 flex justify-center md:justify-end">
                 <button
                   type="submit"
+                  disabled={loading}
                   className="px-8 py-3 w-full md:w-[30%] bg-default-text-color text-white font-medium rounded-[15px]  focus:ring-2 focus:ring-gray-500 hover:bg-gray-600"
                 >
-                  Save
+                  {loading ? 'Loading...' : 'Save'}
                 </button>
               </div>
             </div>

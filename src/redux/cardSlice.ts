@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import { Card } from '../constent/type'
+import { Card } from '../constants/type'
 
 interface CardState {
   cards: Card[]

@@ -10,7 +10,7 @@ import {
   Legend,
   ChartConfiguration,
 } from 'chart.js'
-import { Dataset } from '../../constent/type'
+import { Dataset } from '../../constants/type'
 
 
 interface IDepossitWithdrawChart {
